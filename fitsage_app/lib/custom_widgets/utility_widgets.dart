@@ -3,21 +3,19 @@ import 'package:flutter/material.dart';
 class Header extends StatelessWidget {
   const Header({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Container(
-      color: Colors.amber,
-      height: screenHeight*0.0399,
-      width: screenWidth*0.343,
+    return SizedBox(
+      height: screenHeight * 0.04,
+      width: screenWidth * (135 / 393),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const LogoPic(),
-          SizedBox(width: screenWidth*0.073),
+          const LogoPic(width: 25),
+          SizedBox(width: screenWidth * (20 / 393)),
           const HeaderText(),
         ],
       ),
@@ -32,8 +30,7 @@ class LogoPic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Image.asset("assets/images/logo.png");
+    return Image.asset("assets/images/logo.png",width: width);
   }
 }
 
@@ -42,14 +39,19 @@ class HeaderText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      "FitSage",
-      style: TextStyle(
-          color: Colors.black,
-          fontFamily: "source sans pro",
-          fontSize: 27,
-          fontWeight: FontWeight.normal,
-          decoration: TextDecoration.none),
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return SizedBox(
+      width:(81/393)* screenWidth,
+      child: const Text(
+        "FitSage",
+        style: TextStyle(
+            color: Colors.black,
+            fontFamily: "source sans pro",
+            fontSize: 20,
+            fontWeight: FontWeight.normal,
+            decoration: TextDecoration.none),
+      ),
     );
   }
 }
