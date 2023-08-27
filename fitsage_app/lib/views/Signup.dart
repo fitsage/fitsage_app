@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -45,7 +45,7 @@ class SignInScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Welcome",
+                      "Welcome back!",
                       style: TextStyle(
                         fontFamily: "source sans pro",
                         fontSize: 24 * (screenHeight / 852),
@@ -54,19 +54,6 @@ class SignInScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: (9 / 852) * screenHeight),
-                    Text(
-                      "Ready to unlock your best self?",
-                      style: TextStyle(
-                        fontFamily: "source sans pro",
-                        color: Colors.black.withOpacity(0.6),
-                        fontSize: 16,
-                        fontWeight: FontWeight.normal,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    SizedBox(
-                      height: (4 / 852) * screenHeight,
-                    ),
                     Text(
                       "#SagePathToFIt",
                       style: TextStyle(
@@ -178,7 +165,7 @@ class SignInScreen extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Already Have an Account?",
+                            text: "New here ?",
                             style: TextStyle(
                               color: Colors.black.withOpacity(0.6),
                               fontFamily: "source sans pro",
@@ -198,7 +185,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "Login",
+                            text: "Create New",
                             style: const TextStyle(
                               color: Colors.black,
                               fontFamily: "source sans pro",
@@ -216,7 +203,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                     RichText(
                       text: TextSpan(
-                        text: "Sign in with other apps",
+                        text: "Login with other apps",
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.6),
                           fontFamily: "source sans pro",
