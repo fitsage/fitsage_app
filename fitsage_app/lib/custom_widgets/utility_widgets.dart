@@ -8,17 +8,13 @@ class Header extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return SizedBox(
-      height: screenHeight * 0.04,
-      width: screenWidth * (135 / 393),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const LogoPic(width: 25),
-          SizedBox(width: screenWidth * (20 / 393)),
-          const HeaderText(),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        LogoPic(width: (34 / 393) * screenWidth),
+        SizedBox(width: screenWidth * (20 / 393)),
+        const HeaderText(),
+      ],
     );
   }
 }
@@ -30,7 +26,11 @@ class LogoPic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/images/logo.png",width: width);
+    return Image.asset(
+      "assets/images/logo.png",
+      width: width,
+      height: width * (25 / 34),
+    );
   }
 }
 
@@ -40,17 +40,16 @@ class HeaderText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
-    return SizedBox(
-      width:(81/393)* screenWidth,
-      child: const Text(
-        "FitSage",
-        style: TextStyle(
-            color: Colors.black,
-            fontFamily: "source sans pro",
-            fontSize: 20,
-            fontWeight: FontWeight.normal,
-            decoration: TextDecoration.none),
+    return const Text(
+      "FitSage",
+      style: TextStyle(
+        color: Colors.black,
+        fontFamily: "source sans pro",
+        fontSize: 27,
+        fontWeight: FontWeight.normal,
+        decoration: TextDecoration.none,
       ),
     );
   }
