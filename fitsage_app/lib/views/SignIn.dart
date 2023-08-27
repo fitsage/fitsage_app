@@ -1,4 +1,6 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -30,63 +32,137 @@ class SignInScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.fromLTRB(0, (70 / 852) * screenHeight, 0, 0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                   padding:
                       EdgeInsets.fromLTRB((30 / 393) * screenWidth, 0, 0, 0),
                   child: const Header(),
                 ),
+                SizedBox(
+                  height: (60 / 852) * screenHeight,
+                ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Welcome",
                       style: TextStyle(
                         fontFamily: "source sans pro",
-                        fontSize: 18,
+                        fontSize: 24 * (screenHeight / 852),
                         fontWeight: FontWeight.normal,
                         decoration: TextDecoration.none,
                       ),
                     ),
-                    const Text(
+                    SizedBox(height: (9 / 852) * screenHeight),
+                    Text(
                       "Ready to unlock your best self?",
                       style: TextStyle(
                         fontFamily: "source sans pro",
-                        fontSize: 18,
+                        color: Colors.black.withOpacity(0.6),
+                        fontSize: 16,
                         fontWeight: FontWeight.normal,
                         decoration: TextDecoration.none,
                       ),
                     ),
-                    // ignore: prefer_const_constructors
                     Text(
                       "#SagePathToFIt",
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontFamily: "source sans pro",
-                        fontSize: 18,
+                        fontSize: 16,
+                        color: Colors.black.withOpacity(0.6),
                         fontWeight: FontWeight.normal,
                         decoration: TextDecoration.none,
                       ),
                     ),
-                    Column(
-                      children: [
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter your username',
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            border: UnderlineInputBorder(),
-                            labelText: 'Enter your username',
-                            suffixIcon: Icon(Icons.remove_red_eye),
-                          ),
-                        ),
-                        ElevatedButton(
-                            onPressed: () {}, child: const Text("Next"))
-                      ],
-                    ),
                   ],
+                ),
+                SizedBox(height: (78 / 852) * screenHeight),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: (30 / 393) * screenWidth),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        cursorColor: const Color(0xFF514644),
+                        decoration: const InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFF514644),
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFFEFC8B1),
+                            ),
+                          ),
+                          labelText: 'Enter your username',
+                          contentPadding: EdgeInsets.all(0),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                        ),
+                      ),
+                      SizedBox(height: (31 / 852) * screenHeight),
+                      TextFormField(
+                        cursorColor: const Color(0xFF514644),
+                        decoration: const InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFF514644),
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0xFFEFC8B1),
+                            ),
+                          ),
+                          labelText: 'Password',
+                          contentPadding: EdgeInsets.all(0),
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          suffixIcon: Icon(CupertinoIcons.eye_slash),
+                        ),
+                        obscureText: true,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight * (50 / 852),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding:
+                        EdgeInsets.fromLTRB(0, 0, screenWidth * (30 / 393), 0),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: const MaterialStatePropertyAll<Color>(
+                          Color(0xFF514644),
+                        ),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                        ),
+                      ),
+                      child: SizedBox(
+                        width: (60 / 393) * screenWidth,
+                        child: const Text(
+                          "Next",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 18,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight * (185 / 852),
                 ),
                 Column(
                   children: [
@@ -104,7 +180,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "Login",
+                            text: " ",
                             style: TextStyle(
                               color: Colors.black.withOpacity(0.6),
                               fontFamily: "source sans pro",
@@ -113,8 +189,22 @@ class SignInScreen extends StatelessWidget {
                               decoration: TextDecoration.none,
                             ),
                           ),
+                          TextSpan(
+                            text: "Login",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: "source sans pro",
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.none,
+                            ),
+                            recognizer: TapGestureRecognizer()..onTap = () {},
+                          ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: screenHeight * (10 / 852),
                     ),
                     RichText(
                       text: TextSpan(
@@ -133,17 +223,20 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.facebook),
+                          iconSize: (35 / 393) * screenWidth,
                           onPressed: () {
                             // Perform search action
                           },
                         ),
                         IconButton(
+                          iconSize: (35 / 393) * screenWidth,
                           icon: const Icon(Icons.facebook),
                           onPressed: () {
                             // Show more options
                           },
                         ),
                         IconButton(
+                          iconSize: (35 / 393) * screenWidth,
                           icon: const Icon(Icons.facebook),
                           onPressed: () {
                             // Show more options

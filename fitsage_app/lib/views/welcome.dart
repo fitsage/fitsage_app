@@ -133,7 +133,7 @@ class WelcomeScreen extends StatelessWidget {
                             color: Colors.black,
                             fontFamily: "source sans pro",
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             decoration: TextDecoration.none,
                           ),
                           recognizer: TapGestureRecognizer()
