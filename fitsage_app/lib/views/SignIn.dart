@@ -1,4 +1,6 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/Personaldata.dart';
+import 'package:fitsage_app/views/Signup.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -140,7 +142,13 @@ class SignInScreen extends StatelessWidget {
                     padding:
                         EdgeInsets.fromLTRB(0, 0, screenWidth * (30 / 393), 0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PersonalData()),
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                           const Color(0xFF514644),
@@ -210,7 +218,15 @@ class SignInScreen extends StatelessWidget {
                               fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
                             ),
-                            recognizer: TapGestureRecognizer()..onTap = () {},
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignUpScreen()),
+                                );
+                              },
                           ),
                         ],
                       ),

@@ -1,4 +1,5 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/Weekly.dart';
 import 'package:flutter/material.dart';
 
 class Activitylevel extends StatefulWidget {
@@ -40,7 +41,11 @@ class _ActivitylevelState extends State<Activitylevel> {
                 Padding(
                   padding:
                       EdgeInsets.fromLTRB((30 / 393) * screenWidth, 0, 0, 0),
-                  child: const Headerarrow(),
+                  child: Headerarrow(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
                 ),
                 SizedBox(
                   height: (60 / 852) * screenHeight,
@@ -426,7 +431,13 @@ class _ActivitylevelState extends State<Activitylevel> {
                     padding:
                         EdgeInsets.fromLTRB(0, 0, screenWidth * (30 / 393), 0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Weekly()),
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                           const Color(0xFF514644),

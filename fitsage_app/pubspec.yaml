@@ -64,11 +64,13 @@ flutter:
     - assets/images/welcome.png
     - assets/images/female.png
     - assets/images/male.png
+    - assets/images/weekly.png
     - assets/images/intenseactive.png
     - assets/images/lightlyactive.png
     - assets/images/modernactive.png
     - assets/images/noactivity.png
     - assets/images/veryactive.png
+    - assets/images/target.png
     
   #   - images/a_dot_ham.jpeg
 

@@ -1,4 +1,5 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/bmicalculation.dart';
 import 'package:flutter/material.dart';
 
 class PersonalData extends StatefulWidget {
@@ -40,7 +41,7 @@ class _PersonalDataState extends State<PersonalData> {
                 Padding(
                   padding:
                       EdgeInsets.fromLTRB((30 / 393) * screenWidth, 0, 0, 0),
-                  child: const Headerarrow(),
+                  child: const Header(),
                 ),
                 SizedBox(
                   height: (60 / 852) * screenHeight,
@@ -308,7 +309,12 @@ class _PersonalDataState extends State<PersonalData> {
                     padding:
                         EdgeInsets.fromLTRB(0, 0, screenWidth * (30 / 393), 0),
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Bmi()),
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                           const Color(0xFF514644),

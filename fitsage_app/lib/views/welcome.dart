@@ -1,6 +1,8 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/SignIn.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fitsage_app/views/Signup.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -79,7 +81,14 @@ class WelcomeScreen extends StatelessWidget {
                   height: screenHeight * (35 / 852),
                   width: screenWidth * (159 / 393),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigate to the second page when the button is pressed
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInScreen()),
+                      );
+                    },
                     style: ButtonStyle(
                       backgroundColor: const MaterialStatePropertyAll<Color>(
                         Color(0xFF514644),
@@ -102,7 +111,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * (16 / 852),
+                  height: screenHeight * (20 / 852),
                 ),
                 RichText(
                   text: TextSpan(
@@ -138,7 +147,11 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              // Double tapped.
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SignUpScreen()),
+                              );
                             }),
                     ],
                   ),

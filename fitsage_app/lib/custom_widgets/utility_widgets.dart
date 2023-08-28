@@ -20,19 +20,20 @@ class Header extends StatelessWidget {
 }
 
 class Headerarrow extends StatelessWidget {
-  const Headerarrow({Key? key}) : super(key: key);
+  final VoidCallback onPressed;
+
+  const Headerarrow({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ArrowPic(
           width: (23.73 / 393) * screenWidth,
-          onPressed: () {},
+          onPressed: onPressed,
         ),
         SizedBox(width: screenWidth * (20 / 393)),
         const HeaderText(),
