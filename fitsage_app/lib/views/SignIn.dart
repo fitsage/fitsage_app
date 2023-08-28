@@ -79,7 +79,7 @@ class SignInScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: (78 / 852) * screenHeight),
+                SizedBox(height: (73 / 852) * screenHeight),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: (30 / 393) * screenWidth),
@@ -88,6 +88,7 @@ class SignInScreen extends StatelessWidget {
                       TextFormField(
                         cursorColor: const Color(0xFF514644),
                         decoration: const InputDecoration(
+                          alignLabelWithHint: true,
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF514644),
@@ -99,15 +100,16 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           labelText: 'Enter your username',
-                          labelStyle: TextStyle(fontSize: 16),
+                          labelStyle: TextStyle(fontSize: 18),
                           contentPadding: EdgeInsets.all(0),
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                         ),
                       ),
-                      SizedBox(height: (31 / 852) * screenHeight),
+                      SizedBox(height: (25 / 852) * screenHeight),
                       TextFormField(
                         cursorColor: const Color(0xFF514644),
                         decoration: const InputDecoration(
+                          alignLabelWithHint: true,
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF514644),
@@ -119,7 +121,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           labelText: 'Password',
-                          labelStyle: TextStyle(fontSize: 16),
+                          labelStyle: TextStyle(fontSize: 18),
                           contentPadding: EdgeInsets.all(0),
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                           suffixIcon: Icon(CupertinoIcons.eye_slash),
@@ -172,7 +174,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * (185 / 852),
+                  height: screenHeight * (200 / 852),
                 ),
                 Column(
                   children: [
@@ -190,7 +192,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: " ",
+                            text: "  ",
                             style: TextStyle(
                               color: Colors.black.withOpacity(0.6),
                               fontFamily: "source sans pro",
@@ -204,8 +206,8 @@ class SignInScreen extends StatelessWidget {
                             style: const TextStyle(
                               color: Colors.black,
                               fontFamily: "source sans pro",
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
                             ),
                             recognizer: TapGestureRecognizer()..onTap = () {},

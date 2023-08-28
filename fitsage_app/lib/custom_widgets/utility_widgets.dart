@@ -19,6 +19,48 @@ class Header extends StatelessWidget {
   }
 }
 
+class Headerarrow extends StatelessWidget {
+  const Headerarrow({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        ArrowPic(
+          width: (23.73 / 393) * screenWidth,
+          onPressed: () {},
+        ),
+        SizedBox(width: screenWidth * (20 / 393)),
+        const HeaderText(),
+      ],
+    );
+  }
+}
+
+class ArrowPic extends StatelessWidget {
+  const ArrowPic({Key? key, this.width = 50, required this.onPressed})
+      : super(key: key);
+
+  final double width;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Image.asset(
+        "assets/images/back.png",
+        width: width,
+        height: width * (20 / 23.73),
+      ),
+    );
+  }
+}
+
 class LogoPic extends StatelessWidget {
   const LogoPic({Key? key, this.width = 50}) : super(key: key);
 
