@@ -155,7 +155,13 @@ class _WeeklyState extends State<Weekly> {
                     ),
                     Align(
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Weekly()),
+                          );
+                        },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                             const Color(0xFF514644),
@@ -169,7 +175,7 @@ class _WeeklyState extends State<Weekly> {
                         ),
                         child: SizedBox(
                           width: (60 / 393) * screenWidth,
-                          height: (35 / 852) * screenHeight,
+                          height: (40 / 852) * screenHeight,
                           child: const Align(
                             alignment: Alignment
                                 .center, // Horizontally centering only the text

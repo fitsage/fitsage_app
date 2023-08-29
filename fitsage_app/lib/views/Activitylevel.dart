@@ -87,9 +87,9 @@ class _ActivitylevelState extends State<Activitylevel> {
                           borderRadius: BorderRadius.circular(20.0),
                           border: Border.all(
                             color: selectedLevel == 'No Active'
-                                ? Colors.black.withOpacity(0.5)
+                                ? Colors.black.withOpacity(0.3)
                                 : Colors.transparent,
-                            width: 2,
+                            width: 1.5,
                           ),
                         ),
                         child: Row(
@@ -155,9 +155,9 @@ class _ActivitylevelState extends State<Activitylevel> {
                           borderRadius: BorderRadius.circular(15.0),
                           border: Border.all(
                             color: selectedLevel == 'Lightly Active'
-                                ? Colors.black.withOpacity(0.5)
+                                ? Colors.black.withOpacity(0.3)
                                 : Colors.transparent,
-                            width: 2,
+                            width: 1.5,
                           ),
                         ),
                         child: Center(
@@ -225,9 +225,9 @@ class _ActivitylevelState extends State<Activitylevel> {
                           borderRadius: BorderRadius.circular(15.0),
                           border: Border.all(
                             color: selectedLevel == 'Moderately Active'
-                                ? Colors.black.withOpacity(0.5)
+                                ? Colors.black.withOpacity(0.3)
                                 : Colors.transparent,
-                            width: 2,
+                            width: 1.5,
                           ),
                         ),
                         child: Center(
@@ -295,9 +295,9 @@ class _ActivitylevelState extends State<Activitylevel> {
                           borderRadius: BorderRadius.circular(15.0),
                           border: Border.all(
                             color: selectedLevel == 'Very Active'
-                                ? Colors.black.withOpacity(0.5)
+                                ? Colors.black.withOpacity(0.3)
                                 : Colors.transparent,
-                            width: 2,
+                            width: 1.5,
                           ),
                         ),
                         child: Center(
@@ -365,9 +365,9 @@ class _ActivitylevelState extends State<Activitylevel> {
                           borderRadius: BorderRadius.circular(15.0),
                           border: Border.all(
                             color: selectedLevel == 'Intensely Active'
-                                ? Colors.black.withOpacity(0.5)
+                                ? Colors.black.withOpacity(0.3)
                                 : Colors.transparent,
-                            width: 2,
+                            width: 1.5,
                           ),
                         ),
                         child: Center(
@@ -451,7 +451,7 @@ class _ActivitylevelState extends State<Activitylevel> {
                       ),
                       child: SizedBox(
                         width: (60 / 393) * screenWidth,
-                        height: (35 / 852) * screenHeight,
+                        height: (40 / 852) * screenHeight,
                         child: const Align(
                           alignment: Alignment
                               .center, // Horizontally centering only the text

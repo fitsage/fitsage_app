@@ -1,22 +1,22 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
-import 'package:fitsage_app/views/Activitylevel.dart';
+import 'package:fitsage_app/views/kg_cm.dart';
 import 'package:fitsage_app/views/minutes.dart';
+import 'package:fitsage_app/views/target.dart';
 import 'package:flutter/material.dart';
-import 'am_pm.dart';
 import 'hours.dart';
 
-class Target extends StatefulWidget {
-  const Target({Key? key}) : super(key: key);
+class Height extends StatefulWidget {
+  const Height({Key? key}) : super(key: key);
 
   @override
-  _TargetState createState() => _TargetState();
+  _HeightState createState() => _HeightState();
 }
 
-class _TargetState extends State<Target> {
+class _HeightState extends State<Height> {
+  String selectedGender = '';
   int selectedHourIndex = 0;
   int selectedMinuteIndex = 0;
   int selectedAmPmIndex = 0;
-  String selectedGender = '';
   late FixedExtentScrollController _controller;
 
   @override
@@ -29,7 +29,7 @@ class _TargetState extends State<Target> {
 
   void _startInitialScrolling() async {
     for (int i = 0; i <= 60; i++) {
-      await Future.delayed(const Duration(milliseconds: 1));
+      await Future.delayed(const Duration(microseconds: 5));
       _controller.jumpToItem(i);
     }
   }
@@ -84,7 +84,7 @@ class _TargetState extends State<Target> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Target Weight",
+                            text: "Discover Your BMI",
                             style: TextStyle(
                               fontFamily: "source sans pro",
                               fontSize: 24 * (screenHeight / 852),
@@ -95,155 +95,34 @@ class _TargetState extends State<Target> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: screenHeight * (40 / 852),
-                    ),
-                    Image.asset(
-                      "assets/images/target.png",
-                      width: screenWidth * (132.02 / 393),
-                      height: screenHeight * (130 / 852),
-                    ),
-                    SizedBox(
-                      height: screenHeight * (36 / 852),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Your ideal range is ",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              fontWeight: FontWeight.normal,
-                              color: const Color(0xFF000000).withOpacity(0.6),
-                              decoration: TextDecoration.none,
-                            ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: (9 / 852) * screenHeight),
+                        Text(
+                          "Input Your Height",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            color: Colors.black.withOpacity(0.6),
+                            fontSize: 16 * (screenHeight / 852),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
                           ),
-                          TextSpan(
-                            text: "52",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF008000).withOpacity(1),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " - ",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF000000).withOpacity(0.6),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "72",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF008000).withOpacity(1),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " ",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF008000).withOpacity(1),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "kgs",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF000000).withOpacity(0.6),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: screenHeight * (16 / 852),
-                    ),
-                    RichText(
-                      text: TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "Weight loss of",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              fontWeight: FontWeight.normal,
-                              color: const Color(0xFF000000).withOpacity(0.6),
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " ",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "8",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF008000).withOpacity(1),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: " ",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "kgs",
-                            style: TextStyle(
-                              fontFamily: "source sans pro",
-                              fontSize: 16 * (screenHeight / 852),
-                              color: const Color(0xFF000000).withOpacity(0.6),
-                              fontWeight: FontWeight.normal,
-                              decoration: TextDecoration.none,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: screenHeight * (15 / 852),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       width: 330,
-                      height: 270,
+                      height: 500,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
                           Positioned(
                             top:
-                                110, // Adjust this value to center the grey container vertically
+                                220, // Adjust this value to center the grey container vertically
                             child: Container(
-                              width: 210,
-                              height: 50,
+                              width: 230,
+                              height: 60,
                               decoration: BoxDecoration(
                                 color: const Color(0xFF514644).withOpacity(0.4),
                                 borderRadius: BorderRadius.circular(20.0),
@@ -283,11 +162,12 @@ class _TargetState extends State<Target> {
                                   ),
                                 ),
                               ),
+
                               SizedBox(
                                 width: 60,
                                 child: ListWheelScrollView.useDelegate(
                                   itemExtent: 50,
-                                  perspective: 0.005,
+                                  perspective: 0.01,
                                   diameterRatio: 1.2,
                                   physics: const FixedExtentScrollPhysics(),
                                   onSelectedItemChanged: (index) {
@@ -329,14 +209,14 @@ class _TargetState extends State<Target> {
                                       final isSelected =
                                           index == selectedAmPmIndex;
                                       if (index == 0) {
-                                        return AmPm(
+                                        return KgCm(
                                           isItAm: true,
                                           color: isSelected
                                               ? Colors.white
                                               : Colors.black,
                                         );
                                       } else {
-                                        return AmPm(
+                                        return KgCm(
                                           isItAm: false,
                                           color: isSelected
                                               ? Colors.white
@@ -353,7 +233,7 @@ class _TargetState extends State<Target> {
                       ),
                     ),
                     SizedBox(
-                      height: screenHeight * (15 / 852),
+                      height: screenHeight * (20 / 852),
                     ),
                     Align(
                       child: ElevatedButton(
@@ -361,7 +241,7 @@ class _TargetState extends State<Target> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Activitylevel()),
+                                builder: (context) => const Target()),
                           );
                         },
                         style: ButtonStyle(

@@ -1,6 +1,10 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/height.dart';
+import 'package:fitsage_app/views/minutes.dart';
 import 'package:fitsage_app/views/target.dart';
 import 'package:flutter/material.dart';
+import 'am_pm.dart';
+import 'hours.dart';
 
 class Bmi extends StatefulWidget {
   const Bmi({Key? key}) : super(key: key);
@@ -11,6 +15,31 @@ class Bmi extends StatefulWidget {
 
 class _BmiState extends State<Bmi> {
   String selectedGender = '';
+  int selectedHourIndex = 0;
+  int selectedMinuteIndex = 0;
+  int selectedAmPmIndex = 0;
+  late FixedExtentScrollController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = FixedExtentScrollController(initialItem: 0);
+
+    _startInitialScrolling();
+  }
+
+  void _startInitialScrolling() async {
+    for (int i = 0; i <= 60; i++) {
+      await Future.delayed(const Duration(microseconds: 5));
+      _controller.jumpToItem(i);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +113,127 @@ class _BmiState extends State<Bmi> {
                       ],
                     ),
                     SizedBox(
-                      height: screenHeight * (40 / 852),
+                      width: 330,
+                      height: 500,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Positioned(
+                            top:
+                                220, // Adjust this value to center the grey container vertically
+                            child: Container(
+                              width: 230,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFF514644).withOpacity(0.4),
+                                borderRadius: BorderRadius.circular(20.0),
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Hours wheel
+                              SizedBox(
+                                width: 60,
+                                child: ListWheelScrollView.useDelegate(
+                                  controller: _controller,
+                                  itemExtent: 50,
+                                  perspective: 0.005,
+                                  diameterRatio: 1.2,
+                                  physics: const FixedExtentScrollPhysics(),
+                                  onSelectedItemChanged: (index) {
+                                    setState(() {
+                                      selectedHourIndex = index;
+                                    });
+                                  },
+                                  childDelegate: ListWheelChildBuilderDelegate(
+                                    childCount: 272,
+                                    builder: (context, index) {
+                                      final isSelected =
+                                          index == selectedHourIndex;
+                                      return MyHours(
+                                        hours: index,
+                                        fontSize: 35,
+                                        color: isSelected
+                                            ? Colors.white
+                                            : Colors.black,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 60,
+                                child: ListWheelScrollView.useDelegate(
+                                  itemExtent: 50,
+                                  perspective: 0.01,
+                                  diameterRatio: 1.2,
+                                  physics: const FixedExtentScrollPhysics(),
+                                  onSelectedItemChanged: (index) {
+                                    setState(() {
+                                      selectedMinuteIndex = index;
+                                    });
+                                  },
+                                  childDelegate: ListWheelChildBuilderDelegate(
+                                    childCount: 10,
+                                    builder: (context, index) {
+                                      final isSelected =
+                                          index == selectedMinuteIndex;
+                                      return MyMinutes(
+                                        mins: index,
+                                        color: isSelected
+                                            ? Colors.white
+                                            : Colors.black,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              // AM or PM
+                              SizedBox(
+                                width: 60,
+                                child: ListWheelScrollView.useDelegate(
+                                  itemExtent: 50,
+                                  perspective: 0.005,
+                                  diameterRatio: 1.2,
+                                  physics: const FixedExtentScrollPhysics(),
+                                  onSelectedItemChanged: (index) {
+                                    setState(() {
+                                      selectedAmPmIndex = index;
+                                    });
+                                  },
+                                  childDelegate: ListWheelChildBuilderDelegate(
+                                    childCount: 2,
+                                    builder: (context, index) {
+                                      final isSelected =
+                                          index == selectedAmPmIndex;
+                                      if (index == 0) {
+                                        return AmPm(
+                                          isItAm: true,
+                                          color: isSelected
+                                              ? Colors.white
+                                              : Colors.black,
+                                        );
+                                      } else {
+                                        return AmPm(
+                                          isItAm: false,
+                                          color: isSelected
+                                              ? Colors.white
+                                              : Colors.black,
+                                        );
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenHeight * (20 / 852),
                     ),
                     Align(
                       child: ElevatedButton(
@@ -92,7 +241,7 @@ class _BmiState extends State<Bmi> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Target()),
+                                builder: (context) => const Height()),
                           );
                         },
                         style: ButtonStyle(
@@ -108,7 +257,7 @@ class _BmiState extends State<Bmi> {
                         ),
                         child: SizedBox(
                           width: (60 / 393) * screenWidth,
-                          height: (35 / 852) * screenHeight,
+                          height: (40 / 852) * screenHeight,
                           child: const Align(
                             alignment: Alignment
                                 .center, // Horizontally centering only the text

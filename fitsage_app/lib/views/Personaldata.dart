@@ -328,7 +328,7 @@ class _PersonalDataState extends State<PersonalData> {
                       ),
                       child: SizedBox(
                         width: (60 / 393) * screenWidth,
-                        height: (35 / 852) * screenHeight,
+                        height: (40 / 852) * screenHeight,
                         child: const Align(
                           alignment: Alignment
                               .center, // Horizontally centering only the text
