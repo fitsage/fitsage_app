@@ -1,4 +1,5 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/inches.dart';
 import 'package:fitsage_app/views/kg_cm.dart';
 import 'package:fitsage_app/views/minutes.dart';
 import 'package:fitsage_app/views/target.dart';
@@ -13,6 +14,7 @@ class Height extends StatefulWidget {
 }
 
 class _HeightState extends State<Height> {
+  bool isItAm = true;
   String selectedGender = '';
   int selectedHourIndex = 0;
   int selectedMinuteIndex = 0;
@@ -29,7 +31,7 @@ class _HeightState extends State<Height> {
 
   void _startInitialScrolling() async {
     for (int i = 0; i <= 60; i++) {
-      await Future.delayed(const Duration(microseconds: 5));
+      await Future.delayed(const Duration(microseconds: 1));
       _controller.jumpToItem(i);
     }
   }
@@ -138,7 +140,7 @@ class _HeightState extends State<Height> {
                                 child: ListWheelScrollView.useDelegate(
                                   controller: _controller,
                                   itemExtent: 50,
-                                  perspective: 0.005,
+                                  perspective: 0.01,
                                   diameterRatio: 1.2,
                                   physics: const FixedExtentScrollPhysics(),
                                   onSelectedItemChanged: (index) {
@@ -176,11 +178,11 @@ class _HeightState extends State<Height> {
                                     });
                                   },
                                   childDelegate: ListWheelChildBuilderDelegate(
-                                    childCount: 10,
+                                    childCount: 12,
                                     builder: (context, index) {
                                       final isSelected =
                                           index == selectedMinuteIndex;
-                                      return MyMinutes(
+                                      return Minutes(
                                         mins: index,
                                         color: isSelected
                                             ? Colors.white

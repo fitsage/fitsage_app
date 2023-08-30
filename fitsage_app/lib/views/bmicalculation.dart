@@ -139,7 +139,7 @@ class _BmiState extends State<Bmi> {
                                 child: ListWheelScrollView.useDelegate(
                                   controller: _controller,
                                   itemExtent: 50,
-                                  perspective: 0.005,
+                                  perspective: 0.01,
                                   diameterRatio: 1.2,
                                   physics: const FixedExtentScrollPhysics(),
                                   onSelectedItemChanged: (index) {
