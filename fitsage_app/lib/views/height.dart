@@ -1,4 +1,5 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/Home.dart';
 import 'package:fitsage_app/views/inches.dart';
 import 'package:fitsage_app/views/kg_cm.dart';
 import 'package:fitsage_app/views/minutes.dart';
@@ -98,6 +99,11 @@ class _HeightState extends State<Height> {
                       child: GestureDetector(
                         onTap: () {
                           changeTextColor();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()),
+                          );
                         },
                         child: Text(
                           "Skip",

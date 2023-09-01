@@ -1,5 +1,6 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
 import 'package:fitsage_app/views/Activitylevel.dart';
+import 'package:fitsage_app/views/Home.dart';
 import 'package:fitsage_app/views/minutes.dart';
 import 'package:flutter/material.dart';
 import 'am_pm.dart';
@@ -96,6 +97,11 @@ class _TargetState extends State<Target> {
                       child: GestureDetector(
                         onTap: () {
                           changeTextColor();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()),
+                          );
                         },
                         child: Text(
                           "Skip",

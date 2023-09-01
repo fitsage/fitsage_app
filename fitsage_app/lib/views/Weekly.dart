@@ -1,4 +1,5 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
+import 'package:fitsage_app/views/Home.dart';
 import 'package:flutter/material.dart';
 
 class Weekly extends StatefulWidget {
@@ -67,6 +68,11 @@ class _WeeklyState extends State<Weekly> {
                       child: GestureDetector(
                         onTap: () {
                           changeTextColor();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Home()),
+                          );
                         },
                         child: Text(
                           "Skip",
@@ -196,7 +202,7 @@ class _WeeklyState extends State<Weekly> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Weekly()),
+                                builder: (context) => const Home()),
                           );
                         },
                         style: ButtonStyle(
