@@ -1,7 +1,6 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
 import 'package:fitsage_app/views/height.dart';
 import 'package:fitsage_app/views/minutes.dart';
-import 'package:fitsage_app/views/target.dart';
 import 'package:flutter/material.dart';
 import 'am_pm.dart';
 import 'hours.dart';
@@ -14,11 +13,19 @@ class Bmi extends StatefulWidget {
 }
 
 class _BmiState extends State<Bmi> {
+  Color skipTextColor = Colors.black.withOpacity(0.4);
   String selectedGender = '';
   int selectedHourIndex = 0;
   int selectedMinuteIndex = 0;
   int selectedAmPmIndex = 0;
   late FixedExtentScrollController _controller;
+
+  void changeTextColor() {
+    setState(() {
+      skipTextColor = Colors.black
+          .withOpacity(0.8); // Change this color to your desired color
+    });
+  }
 
   @override
   void initState() {
@@ -67,14 +74,43 @@ class _BmiState extends State<Bmi> {
             padding: EdgeInsets.fromLTRB(0, (70 / 852) * screenHeight, 0, 0),
             child: Column(
               children: [
-                Padding(
-                  padding:
-                      EdgeInsets.fromLTRB((30 / 393) * screenWidth, 0, 0, 0),
-                  child: Headerarrow(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          (30 / 393) * screenWidth, 0, 0, 0),
+                      child: Headerarrow(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                    const Spacer(), // Add a spacer to push the next widget to the right edge
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        0,
+                        0,
+                        screenWidth * (30 / 393),
+                        0,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          changeTextColor();
+                        },
+                        child: Text(
+                          "Skip",
+                          style: TextStyle(
+                            color:
+                                skipTextColor, // Use the skipTextColor variable here
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: (60 / 852) * screenHeight,

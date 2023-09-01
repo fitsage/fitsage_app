@@ -10,7 +10,15 @@ class PersonalData extends StatefulWidget {
 }
 
 class _PersonalDataState extends State<PersonalData> {
+  Color skipTextColor = Colors.black.withOpacity(0.4);
   String selectedGender = '';
+
+  void changeTextColor() {
+    setState(() {
+      skipTextColor = Colors.black
+          .withOpacity(0.8); // Change this color to your desired color
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +46,43 @@ class _PersonalDataState extends State<PersonalData> {
             padding: EdgeInsets.fromLTRB(0, (70 / 852) * screenHeight, 0, 0),
             child: Column(
               children: [
-                Padding(
-                  padding:
-                      EdgeInsets.fromLTRB((30 / 393) * screenWidth, 0, 0, 0),
-                  child: const Header(),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        (30 / 393) * screenWidth,
+                        0,
+                        0,
+                        0,
+                      ),
+                      child: const Header(),
+                    ),
+                    const Spacer(), // Add a spacer to push the next widget to the right edge
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        0,
+                        0,
+                        screenWidth * (30 / 393),
+                        0,
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          changeTextColor();
+                        },
+                        child: Text(
+                          "Skip",
+                          style: TextStyle(
+                            color:
+                                skipTextColor, // Use the skipTextColor variable here
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: (60 / 852) * screenHeight,
