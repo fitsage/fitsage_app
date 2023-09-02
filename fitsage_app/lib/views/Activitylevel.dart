@@ -282,7 +282,7 @@ class _ActivitylevelState extends State<Activitylevel> {
                                     (26 / 393) * screenWidth, 0, 0, 0),
                               ),
                               Image.asset(
-                                "assets/images/noactivity.png",
+                                "assets/images/modernactive.png",
                                 width: screenWidth * (36.54 / 393),
                                 height: screenHeight * (40 / 852),
                               ),

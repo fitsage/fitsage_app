@@ -182,7 +182,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * (200 / 852),
+                  height: screenHeight * (175 / 852),
                 ),
                 Column(
                   children: [
