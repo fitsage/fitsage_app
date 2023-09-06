@@ -5,10 +5,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
+  @override
+  _SignInScreenState createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -110,25 +116,37 @@ class SignInScreen extends StatelessWidget {
                       SizedBox(height: (25 / 852) * screenHeight),
                       TextFormField(
                         cursorColor: const Color(0xFF514644),
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           alignLabelWithHint: true,
-                          enabledBorder: UnderlineInputBorder(
+                          enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFF514644),
                             ),
                           ),
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: Color(0xFFEFC8B1),
                             ),
                           ),
                           labelText: 'Password',
-                          labelStyle: TextStyle(fontSize: 18),
-                          contentPadding: EdgeInsets.all(0),
+                          labelStyle: const TextStyle(fontSize: 18),
+                          contentPadding: const EdgeInsets.all(0),
                           floatingLabelBehavior: FloatingLabelBehavior.never,
-                          suffixIcon: Icon(CupertinoIcons.eye_slash),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            child: Icon(
+                              _obscureText
+                                  ? CupertinoIcons.eye_slash
+                                  : CupertinoIcons.eye,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
-                        obscureText: true,
+                        obscureText: _obscureText,
                       ),
                     ],
                   ),

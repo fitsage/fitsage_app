@@ -158,13 +158,13 @@ class _HeightState extends State<Height> {
                     ),
                     SizedBox(
                       width: 330,
-                      height: 500,
+                      height: (500 / 852) * screenHeight,
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
                           Positioned(
-                            top:
-                                220, // Adjust this value to center the grey container vertically
+                            top: (220 / 852) *
+                                screenHeight, // Adjust this value to center the grey container vertically
                             child: Container(
                               width: 230,
                               height: 60,
@@ -182,7 +182,7 @@ class _HeightState extends State<Height> {
                                 width: 60,
                                 child: ListWheelScrollView.useDelegate(
                                   controller: _controller,
-                                  itemExtent: 50,
+                                  itemExtent: 60,
                                   perspective: 0.01,
                                   diameterRatio: 1.2,
                                   physics: const FixedExtentScrollPhysics(),
@@ -211,7 +211,7 @@ class _HeightState extends State<Height> {
                               SizedBox(
                                 width: 60,
                                 child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 50,
+                                  itemExtent: 60,
                                   perspective: 0.01,
                                   diameterRatio: 1.2,
                                   physics: const FixedExtentScrollPhysics(),
@@ -239,7 +239,7 @@ class _HeightState extends State<Height> {
                               SizedBox(
                                 width: 60,
                                 child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 50,
+                                  itemExtent: 58.5,
                                   perspective: 0.005,
                                   diameterRatio: 1.2,
                                   physics: const FixedExtentScrollPhysics(),

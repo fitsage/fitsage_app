@@ -14,7 +14,7 @@ class Minutes extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Center(
         child: Text(
-          mins < 12 ? mins.toString() + '"' : mins.toString(),
+          mins < 12 ? mins.toString() + ' "' : mins.toString(),
           style: TextStyle(
             fontFamily: "source sans pro",
             fontWeight: FontWeight.normal,
