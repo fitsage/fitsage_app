@@ -1,5 +1,5 @@
 import 'package:fitsage_app/custom_widgets/utility_widgets.dart';
-import 'package:fitsage_app/views/Home.dart';
+import 'package:fitsage_app/pages/Home.dart';
 import 'package:fitsage_app/views/inches.dart';
 import 'package:fitsage_app/views/kg_cm.dart';
 import 'package:fitsage_app/views/minutes.dart';
