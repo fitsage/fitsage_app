@@ -29,16 +29,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  intl: ^0.17.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  fl_chart: ^0.63.0
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  dots_indicator: ^2.1.1
+  percent_indicator: ^4.2.3
+  fl_chart: ^0.63.0
+  liquid_progress_indicator_v2: ^0.5.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -76,6 +80,25 @@ flutter:
     - assets/images/Home.png
     - assets/images/planner.png
     - assets/images/tracking.png
+    - assets/images/profile.png
+    - assets/images/notification.png
+    - assets/images/streak.png
+    - assets/images/hand.png
+    - assets/images/down.png
+    - assets/images/orderfood.png
+    - assets/images/addfood.png
+    - assets/images/drop.png
+    - assets/images/banana.png
+    - assets/images/edit.png
+    - assets/images/protein.png
+    - assets/images/delete.png
+    - assets/images/like.png
+    - assets/images/rupee.png
+    - assets/images/order.png
+    - assets/images/share.png
+    - assets/images/setting.png
+    - assets/images/alert.png
+    
     
   #   - images/a_dot_ham.jpeg
 

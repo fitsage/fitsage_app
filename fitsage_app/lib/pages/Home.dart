@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         body: pages[_currentIndex],
         bottomNavigationBar: SizedBox(
-          height: 62 * (screenHeight / 852),
+          height: (62 / 852) * screenHeight,
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15),
@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
               unselectedFontSize: 12,
               selectedFontSize: 12,
               type: BottomNavigationBarType.fixed,
-              backgroundColor: const Color(0xFFF4F3F2),
+              backgroundColor: const Color(0xFFF4F3F2).withOpacity(1.0),
               selectedItemColor: Colors.black,
               unselectedItemColor: Colors.black.withOpacity(0.6),
               currentIndex: _currentIndex,
@@ -53,60 +53,60 @@ class _HomeState extends State<Home> {
                 BottomNavigationBarItem(
                   label: "Fitsage",
                   icon: Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 4.0), // Adjust the bottom padding here
+                    padding: const EdgeInsets.only(bottom: 4.0),
                     child: SizedBox(
-                        width: 17,
-                        height: 19,
+                        width: (17 / 393) * screenWidth,
+                        height: (19 / 852) * screenHeight,
                         child: Opacity(
                           opacity: _currentIndex == 0 ? 1.0 : 0.6,
                           child: Image.asset('assets/images/Home.png',
-                              width: 16, height: 18),
+                              width: (16 / 393) * screenWidth,
+                              height: (18 / 852) * screenHeight),
                         )),
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: "Planner",
                   icon: Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 4.0), // Adjust the bottom padding here
+                    padding: const EdgeInsets.only(bottom: 4.0),
                     child: SizedBox(
-                        width: 17,
-                        height: 19,
+                        width: (17 / 393) * screenWidth,
+                        height: (19 / 852) * screenHeight,
                         child: Opacity(
                           opacity: _currentIndex == 1 ? 1.0 : 0.6,
                           child: Image.asset('assets/images/planner.png',
-                              width: 16.97, height: 18),
+                              width: (16.97 / 393) * screenWidth,
+                              height: (18 / 852) * screenHeight),
                         )),
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: "Trackers",
                   icon: Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 4.0), // Adjust the bottom padding here
+                    padding: const EdgeInsets.only(bottom: 4.0),
                     child: SizedBox(
-                        width: 17,
-                        height: 19,
+                        width: (19 / 393) * screenWidth,
+                        height: (19 / 852) * screenHeight,
                         child: Opacity(
                           opacity: _currentIndex == 2 ? 1.0 : 0.6,
                           child: Image.asset('assets/images/tracking.png',
-                              width: 18, height: 18),
+                              width: (18 / 393) * screenWidth,
+                              height: (18 / 852) * screenHeight),
                         )),
                   ),
                 ),
                 BottomNavigationBarItem(
                   label: "Glossary List",
                   icon: Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 4.0), // Adjust the bottom padding here
+                    padding: const EdgeInsets.only(bottom: 4.0),
                     child: SizedBox(
-                        width: 17,
-                        height: 19,
+                        width: (17 / 393) * screenWidth,
+                        height: (19 / 852) * screenHeight,
                         child: Opacity(
                           opacity: _currentIndex == 3 ? 1.0 : 0.6,
                           child: Image.asset('assets/images/list.png',
-                              width: 16, height: 18),
+                              width: (16 / 393) * screenWidth,
+                              height: (18 / 852) * screenHeight),
                         )),
                   ),
                 ),
