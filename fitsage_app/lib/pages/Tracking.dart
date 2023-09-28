@@ -14,6 +14,31 @@ class Tracking extends StatefulWidget {
 }
 
 class _TrackingState extends State<Tracking> {
+  late DateTime selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = DateTime.now();
+    selectedOption = 'Calories';
+    _controller = FixedExtentScrollController(initialItem: 0);
+    _startInitialScrolling();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? dateTime = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(3000),
+    );
+    if (dateTime != null) {
+      setState(() {
+        selectedDate = dateTime;
+      });
+    }
+  }
+
   String selectedOption = ''; // Store the selected option
 
   int count = 0;
@@ -78,14 +103,6 @@ class _TrackingState extends State<Tracking> {
   int selectedAmPmIndex = 0;
   late FixedExtentScrollController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    selectedOption = 'Calories';
-    _controller = FixedExtentScrollController(initialItem: 0);
-    _startInitialScrolling();
-  }
-
   void _startInitialScrolling() async {
     for (int i = 0; i <= 60; i++) {
       await Future.delayed(const Duration(milliseconds: 1));
@@ -105,12 +122,9 @@ class _TrackingState extends State<Tracking> {
     double screenHeight = MediaQuery.of(context).size.height;
     double target = 8;
 
-    // Get the current date
-    DateTime now = DateTime.now();
-
-    // Format the date and month
-    String formattedDate = DateFormat('d').format(now); // Day of the month
-    String formattedMonth = DateFormat('MMMM').format(now); // Full month name
+    String formattedDate = DateFormat('d').format(selectedDate);
+    String formattedMonth = DateFormat('MMMM').format(selectedDate);
+    String formattedYear = DateFormat('y').format(selectedDate);
 
     return Container(
       color: const Color(0xFFFFFFFF),
@@ -122,61 +136,26 @@ class _TrackingState extends State<Tracking> {
           Stack(
             alignment: Alignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Today",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
+              GestureDetector(
+                onTap: () => _selectDate(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      selectedDate.isToday
+                          ? "Today, $formattedDate $formattedMonth"
+                          : "$formattedDate $formattedMonth $formattedYear",
+                      style: TextStyle(
+                        fontFamily: "source sans pro",
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        decoration: TextDecoration.none,
+                      ),
                     ),
-                  ),
-                  const Text(
-                    ",",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  Text(
-                    formattedDate, // Display the current date
-                    style: const TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  const Text(
-                    " ",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  Text(
-                    formattedMonth, // Display the current month name
-                    style: const TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Positioned(
                 right: 20,
@@ -199,12 +178,17 @@ class _TrackingState extends State<Tracking> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 16,
-                height: 8,
-                child: Image.asset(
-                  'assets/images/down.png',
-                  fit: BoxFit.cover,
+              GestureDetector(
+                onTap: () {
+                  _selectDate(context);
+                },
+                child: SizedBox(
+                  width: 16,
+                  height: 8,
+                  child: Image.asset(
+                    'assets/images/down.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
@@ -858,5 +842,12 @@ class _TrackingState extends State<Tracking> {
         ],
       ),
     );
+  }
+}
+
+extension DateTimeExtension on DateTime {
+  bool get isToday {
+    final now = DateTime.now();
+    return day == now.day && month == now.month && year == now.year;
   }
 }

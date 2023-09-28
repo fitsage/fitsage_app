@@ -151,7 +151,7 @@ class _MainPageState extends State<MainPage> {
                       children: [
                         SizedBox(width: (20 / 393) * screenWidth),
                         Text(
-                          "Today",
+                          "Hi",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 20,

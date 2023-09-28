@@ -6,8 +6,31 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static const Color primaryColor = const Color(0xFFEFC8B1);
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Home());
+    MaterialColor primarySwatch = MaterialColor(
+      primaryColor.value,
+      <int, Color>{
+        50: primaryColor,
+        100: primaryColor,
+        200: primaryColor,
+        300: primaryColor,
+        400: primaryColor,
+        500: primaryColor,
+        600: primaryColor,
+        700: primaryColor,
+        800: primaryColor,
+        900: primaryColor,
+      },
+    );
+
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: primarySwatch,
+      ),
+      home: Home(),
+    );
   }
 }

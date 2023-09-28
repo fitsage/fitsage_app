@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Planner extends StatefulWidget {
   const Planner({Key? key}) : super(key: key);
@@ -8,10 +9,68 @@ class Planner extends StatefulWidget {
 }
 
 class _PlannerState extends State<Planner> with TickerProviderStateMixin {
+  late DateTime selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedDate = DateTime.now();
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? dateTime = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(3000),
+    );
+    if (dateTime != null) {
+      setState(() {
+        selectedDate = dateTime;
+      });
+    }
+  }
+
+  bool isExpanded = false;
+
+  void toggleExpand() {
+    setState(() {
+      isExpanded = !isExpanded;
+    });
+  }
+
+  void openFullScreenDialog() {
+    if (!isExpanded) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return FullScreenDialog(onDialogDismissed: toggleExpand);
+        },
+      );
+      toggleExpand();
+    }
+  }
+
+  void openAlertFullScreenDialog() {
+    if (!isExpanded) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertFullScreenDialog(onDialogDismissed: toggleExpand);
+        },
+      );
+      toggleExpand();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    String formattedDate = DateFormat('d').format(selectedDate);
+    String formattedMonth = DateFormat('MMMM').format(selectedDate);
+    String formattedYear = DateFormat('y').format(selectedDate);
 
     return Container(
       child: Column(
@@ -21,82 +80,53 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
           ),
           Stack(
             children: [
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "For a",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
+              GestureDetector(
+                onTap: () => _selectDate(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      selectedDate.isToday
+                          ? "Today, $formattedDate $formattedMonth"
+                          : "$formattedDate $formattedMonth $formattedYear",
+                      style: TextStyle(
+                        fontFamily: "source sans pro",
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.normal,
+                        decoration: TextDecoration.none,
+                      ),
                     ),
-                  ),
-                  Text(
-                    " ",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  Text(
-                    "7",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  Text(
-                    " ",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                  Text(
-                    "days",
-                    style: TextStyle(
-                      fontFamily: "source sans pro",
-                      fontSize: 14,
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal,
-                      decoration: TextDecoration.none,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Positioned(
                 right: 20,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      width: 15,
-                      height: 15,
-                      child: Image.asset(
-                        'assets/images/setting.png',
-                        fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: openFullScreenDialog,
+                      child: SizedBox(
+                        width: 15,
+                        height: 15,
+                        child: Image.asset(
+                          'assets/images/setting.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 15),
-                    SizedBox(
-                      width: 16.88,
-                      height: 15,
-                      child: Image.asset(
-                        'assets/images/alert.png',
-                        fit: BoxFit.cover,
+                    GestureDetector(
+                      onTap: openAlertFullScreenDialog,
+                      child: SizedBox(
+                        width: 16.88,
+                        height: 15,
+                        child: Image.asset(
+                          'assets/images/alert.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ],
@@ -111,12 +141,17 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
-                width: 16,
-                height: 8,
-                child: Image.asset(
-                  'assets/images/down.png',
-                  fit: BoxFit.cover,
+              GestureDetector(
+                onTap: () {
+                  _selectDate(context);
+                },
+                child: SizedBox(
+                  width: 16,
+                  height: 8,
+                  child: Image.asset(
+                    'assets/images/down.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ],
@@ -1207,6 +1242,13 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
   }
 }
 
+extension DateTimeExtension on DateTime {
+  bool get isToday {
+    final now = DateTime.now();
+    return day == now.day && month == now.month && year == now.year;
+  }
+}
+
 class ShoppingItemWidget extends StatelessWidget {
   final String itemName;
   final String itemWeight;
@@ -1302,6 +1344,825 @@ class ShoppingItemWidget extends StatelessWidget {
           ),
           const SizedBox(width: 15),
         ],
+      ),
+    );
+  }
+}
+
+class FullScreenDialog extends StatelessWidget {
+  final VoidCallback onDialogDismissed;
+
+  FullScreenDialog({required this.onDialogDismissed});
+
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController breakfastController = TextEditingController();
+    breakfastController.text = '25';
+
+// TextEditingController for lunch
+    TextEditingController Snack1Controller = TextEditingController();
+    Snack1Controller.text = '15';
+
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pop();
+        onDialogDismissed();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Container(
+            width: screenWidth,
+            color: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, top: 20, bottom: 15),
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        color: Colors.black,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          onDialogDismissed();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: SizedBox(
+                    width: 353,
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Meal breakdown",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Breakfast in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: breakfastController,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Snack-1 in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Lunch in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Snack-2 in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Dinner in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Macro Breakdown",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 18,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "carbs in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: breakfastController,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Protein in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Fats in %",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        const Text(
+                          "Fiber in gm",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: Snack1Controller,
+                          cursorColor: const Color(0xFF514644),
+                          decoration: InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFF514644),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              borderSide: const BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: const TextStyle(fontSize: 18),
+                            contentPadding: const EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            suffixText: 'Calories : 900Kcal',
+                            suffixStyle: const TextStyle(fontSize: 10),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AlertFullScreenDialog extends StatefulWidget {
+  final VoidCallback onDialogDismissed;
+
+  AlertFullScreenDialog({required this.onDialogDismissed});
+
+  @override
+  _AlertFullScreenDialogState createState() => _AlertFullScreenDialogState();
+}
+
+class _AlertFullScreenDialogState extends State<AlertFullScreenDialog> {
+  bool isSwitched = false;
+  bool? isBreakfast = true;
+  TimeOfDay time = const TimeOfDay(
+    hour: 9,
+    minute: 0,
+  );
+  bool? isSnack1 = false;
+  TimeOfDay snack1Time = const TimeOfDay(hour: 11, minute: 0);
+  bool? isSnack2 = false;
+  TimeOfDay snack2Time = const TimeOfDay(hour: 17, minute: 30);
+  bool? isLunch = true;
+  TimeOfDay lunchTime = const TimeOfDay(hour: 13, minute: 0);
+  bool? isDinner = true;
+  TimeOfDay dinnerTime = const TimeOfDay(hour: 20, minute: 30);
+
+  @override
+  Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pop();
+        widget.onDialogDismissed();
+        return false;
+      },
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: Container(
+            width: screenWidth,
+            color: const Color(0xFFFFFFFF),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, top: 20, bottom: 15),
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        color: Colors.black,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          widget.onDialogDismissed();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+                Expanded(
+                  child: SizedBox(
+                    width: 353,
+                    child: ListView(
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "Meal Reminder",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            Switch(
+                              value: isSwitched,
+                              onChanged: (value) {
+                                setState(() {
+                                  isSwitched = value;
+                                });
+                              },
+                              activeColor: const Color(0xFFEFC8B1),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.zero,
+                              child: Checkbox(
+                                value: isBreakfast,
+                                activeColor: const Color(0xFFEFC8B1),
+                                onChanged: isSwitched
+                                    ? (value) {
+                                        setState(() {
+                                          isBreakfast = value;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            const Text(
+                              "Breakfast",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: isSwitched
+                                  ? () async {
+                                      TimeOfDay? newTime = await showTimePicker(
+                                        context: context,
+                                        initialTime: time,
+                                      );
+                                      if (newTime != null) {
+                                        setState(() {
+                                          time = newTime;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                "${time.hourOfPeriod}:${time.minute.toString().padLeft(2, '0')} ${time.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                style: const TextStyle(
+                                  fontFamily: "source sans pro",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.zero,
+                              child: Checkbox(
+                                value: isSnack1,
+                                activeColor: const Color(0xFFEFC8B1),
+                                onChanged: isSwitched
+                                    ? (value) {
+                                        setState(() {
+                                          isSnack1 = value;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            const Text(
+                              "Snack 1",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: isSwitched
+                                  ? () async {
+                                      TimeOfDay? newTime = await showTimePicker(
+                                        context: context,
+                                        initialTime: snack1Time,
+                                      );
+                                      if (newTime != null) {
+                                        setState(() {
+                                          snack1Time = newTime;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                "${snack1Time.hourOfPeriod}:${snack1Time.minute.toString().padLeft(2, '0')} ${snack1Time.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                style: const TextStyle(
+                                  fontFamily: "source sans pro",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.zero,
+                              child: Checkbox(
+                                value: isLunch,
+                                activeColor: const Color(0xFFEFC8B1),
+                                onChanged: isSwitched
+                                    ? (value) {
+                                        setState(() {
+                                          isLunch = value;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            const Text(
+                              "Lunch",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: isSwitched
+                                  ? () async {
+                                      TimeOfDay? newTime = await showTimePicker(
+                                        context: context,
+                                        initialTime: lunchTime,
+                                      );
+                                      if (newTime != null) {
+                                        setState(() {
+                                          lunchTime = newTime;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                "${lunchTime.hourOfPeriod}:${lunchTime.minute.toString().padLeft(2, '0')} ${lunchTime.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                style: const TextStyle(
+                                  fontFamily: "source sans pro",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.zero,
+                              child: Checkbox(
+                                value: isSnack2,
+                                activeColor: const Color(0xFFEFC8B1),
+                                onChanged: isSwitched
+                                    ? (value) {
+                                        setState(() {
+                                          isSnack2 = value;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            const Text(
+                              "Snack 2",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: isSwitched
+                                  ? () async {
+                                      TimeOfDay? newTime = await showTimePicker(
+                                        context: context,
+                                        initialTime: snack2Time,
+                                      );
+                                      if (newTime != null) {
+                                        setState(() {
+                                          snack2Time = newTime;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                "${snack2Time.hourOfPeriod}:${snack2Time.minute.toString().padLeft(2, '0')} ${snack2Time.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                style: const TextStyle(
+                                  fontFamily: "source sans pro",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.zero,
+                              child: Checkbox(
+                                value: isDinner,
+                                activeColor: const Color(0xFFEFC8B1),
+                                onChanged: isSwitched
+                                    ? (value) {
+                                        setState(() {
+                                          isDinner = value;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            ),
+                            const SizedBox(width: 5),
+                            const Text(
+                              "Dinner",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              onTap: isSwitched
+                                  ? () async {
+                                      TimeOfDay? newTime = await showTimePicker(
+                                        context: context,
+                                        initialTime: dinnerTime,
+                                      );
+                                      if (newTime != null) {
+                                        setState(() {
+                                          dinnerTime = newTime;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                "${dinnerTime.hourOfPeriod}:${dinnerTime.minute.toString().padLeft(2, '0')} ${dinnerTime.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                style: const TextStyle(
+                                  fontFamily: "source sans pro",
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -15,9 +15,9 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
 
   List<Widget> pages = const [
+    Tracking(),
     MainPage(),
     Planner(),
-    Tracking(),
     Shopping(),
   ];
 
