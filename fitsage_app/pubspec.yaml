@@ -43,6 +43,9 @@ dev_dependencies:
   percent_indicator: ^4.2.3
   fl_chart: ^0.63.0
   liquid_progress_indicator_v2: ^0.5.0
+  confetti: ^0.7.0
+  timeline_tile: ^2.0.0
+  image_picker: ^1.0.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -98,6 +101,12 @@ flutter:
     - assets/images/share.png
     - assets/images/setting.png
     - assets/images/alert.png
+    - assets/images/breakdown.png
+    - assets/images/clock.png
+    - assets/images/goal.png
+    - assets/images/pearson.png
+    - assets/images/Camera.png
+    - assets/images/Moon.png
     
     
   #   - images/a_dot_ham.jpeg

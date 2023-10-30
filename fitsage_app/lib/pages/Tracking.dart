@@ -1,4 +1,8 @@
-import 'package:fitsage_app/pages/Bar_chart.dart';
+import 'package:fitsage_app/custom_widgets/Add_weight_alert.dart';
+import 'package:fitsage_app/custom_widgets/Bar_chart.dart';
+import 'package:fitsage_app/custom_widgets/Time_Tile.dart';
+import 'package:fitsage_app/custom_widgets/confetti.dart';
+import 'package:fitsage_app/custom_widgets/line_Chart.dart';
 import 'package:fitsage_app/views/am_pm.dart';
 import 'package:fitsage_app/views/hours.dart';
 import 'package:fitsage_app/views/minutes.dart';
@@ -7,22 +11,48 @@ import 'package:intl/intl.dart';
 import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
 class Tracking extends StatefulWidget {
-  const Tracking({Key? key}) : super(key: key);
+  String selectedOption;
+
+  Tracking({Key? key, required this.selectedOption}) : super(key: key);
 
   @override
-  _TrackingState createState() => _TrackingState();
+  _TrackingState createState() =>
+      _TrackingState(selectedOption: selectedOption);
 }
 
 class _TrackingState extends State<Tracking> {
   late DateTime selectedDate;
+  String selectedOption;
+  int selectedHourIndex = 0;
+  int selectedMinuteIndex = 0;
+  int selectedAmPmIndex = 0;
+  late FixedExtentScrollController _controller;
+
+  _TrackingState({required this.selectedOption});
 
   @override
   void initState() {
     super.initState();
     selectedDate = DateTime.now();
-    selectedOption = 'Calories';
     _controller = FixedExtentScrollController(initialItem: 0);
     _startInitialScrolling();
+    weightMap["24 Oct 2023"] = "70";
+    weightMap["23 Oct 2023"] = "68";
+    weightMap["22 Oct 2023"] = "66";
+  }
+
+  void _startInitialScrolling() async {
+    int hoursItemCount = 60;
+    for (int i = 0; i < hoursItemCount; i++) {
+      await Future.delayed(const Duration(milliseconds: 1));
+      _controller.jumpToItem(i);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -38,8 +68,6 @@ class _TrackingState extends State<Tracking> {
       });
     }
   }
-
-  String selectedOption = ''; // Store the selected option
 
   int count = 0;
 
@@ -57,9 +85,39 @@ class _TrackingState extends State<Tracking> {
     });
   }
 
+  // text controller
+  final _controllerweight = TextEditingController();
+
+  Map<String, String?> weightMap = {};
+
+  void saveNewTask() {
+    setState(() {
+      final currentDate =
+          "${DateTime.now().day} ${DateFormat.MMM().format(DateTime.now())} ${DateTime.now().year}";
+      final weightValue = _controllerweight.text ??
+          "Default Weight"; // Provide a default value if the text is null
+      weightMap[currentDate] =
+          weightValue; // Store weight with the current date
+      _controllerweight.clear(); // Clear the text field after saving
+    });
+    Navigator.of(context).pop();
+  }
+
+  void createnewTask() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(
+          controller: _controllerweight,
+          onSave: saveNewTask,
+          onCancel: () => Navigator.of(context).pop(),
+        );
+      },
+    );
+  }
+
   Widget _gestureContainer(String text) {
-    bool isSelected =
-        selectedOption == text; // Check if this option is selected
+    bool isSelected = selectedOption == text;
 
     return GestureDetector(
       onTap: () {
@@ -96,24 +154,6 @@ class _TrackingState extends State<Tracking> {
         ),
       ),
     );
-  }
-
-  int selectedHourIndex = 0;
-  int selectedMinuteIndex = 0;
-  int selectedAmPmIndex = 0;
-  late FixedExtentScrollController _controller;
-
-  void _startInitialScrolling() async {
-    for (int i = 0; i <= 60; i++) {
-      await Future.delayed(const Duration(milliseconds: 1));
-      _controller.jumpToItem(i);
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   @override
@@ -159,13 +199,33 @@ class _TrackingState extends State<Tracking> {
               ),
               Positioned(
                 right: 20,
-                child: SizedBox(
-                  width: 15,
-                  height: 15,
-                  child: Image.asset(
-                    'assets/images/edit.png',
-                    fit: BoxFit.cover,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                        onTap: () {},
+                        child: Opacity(
+                          opacity: 0.60,
+                          child: SizedBox(
+                            width: 15,
+                            height: 15,
+                            child: Image.asset(
+                              'assets/images/share.png',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )),
+                    const SizedBox(width: 10),
+                    GestureDetector(
+                        onTap: () {},
+                        child: const Opacity(
+                          opacity: 0.60,
+                          child: Icon(
+                            Icons.add,
+                            size: 25,
+                          ),
+                        )),
+                  ],
                 ),
               ),
             ],
@@ -203,11 +263,9 @@ class _TrackingState extends State<Tracking> {
               SizedBox(
                 width: (20 / 852) * screenHeight,
               ),
-              _gestureContainer(
-                  'Calories'), // Use the custom gesture container widget
+              _gestureContainer('Calories'),
               const Spacer(),
-              _gestureContainer(
-                  'Weight'), // Use the custom gesture container widget
+              _gestureContainer('Weight'),
               const Spacer(),
               _gestureContainer(
                   'Water'), // Use the custom gesture container widget
@@ -466,157 +524,242 @@ class _TrackingState extends State<Tracking> {
             Expanded(
               child: Container(
                 width: 353,
-                child: Column(
+                child: Stack(
                   children: [
-                    const SizedBox(height: 30),
-                    Text(
-                      "Current Weight",
-                      style: TextStyle(
-                        fontFamily: "source sans pro",
-                        fontSize: 14,
-                        color: Colors.black.withOpacity(0.6),
-                        fontWeight: FontWeight.normal,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      "65 Kg",
-                      style: TextStyle(
-                        fontFamily: "source sans pro",
-                        fontSize: 24,
-                        color: Colors.black.withOpacity(1.0),
-                        fontWeight: FontWeight.normal,
-                        decoration: TextDecoration.none,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    SizedBox(
-                      width: 330,
-                      height: 200,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Positioned(
-                            top:
-                                75, // Adjust this value to center the grey container vertically
-                            child: Container(
-                              width: 210,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFF4F3F2).withOpacity(1.0),
-                                borderRadius: BorderRadius.circular(20.0),
+                    Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () {},
+                              child: Container(
+                                width: 166.5,
+                                height: 86,
+                                decoration: BoxDecoration(
+                                  color:
+                                      const Color(0xFFF9D4BF).withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          width: 25,
+                                          height: 25,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFFFFFFFF)
+                                                .withOpacity(1.0),
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                          ),
+                                          child: Center(
+                                            child: Image.asset(
+                                              'assets/images/edit.png',
+                                              width: (10 / 393) * screenWidth,
+                                              height: (10 / 852) * screenHeight,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(width: 12),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Current Weight",
+                                              style: TextStyle(
+                                                fontFamily: "source sans pro",
+                                                fontSize: 10,
+                                                color: Colors.black
+                                                    .withOpacity(0.6),
+                                                fontWeight: FontWeight.normal,
+                                                decoration: TextDecoration.none,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(width: 12),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "18",
+                                              style: TextStyle(
+                                                fontFamily: "source sans pro",
+                                                fontSize: 18,
+                                                color: Colors.black
+                                                    .withOpacity(1.0),
+                                                fontWeight: FontWeight.normal,
+                                                decoration: TextDecoration.none,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
+                            SizedBox(width: (20 / 393) * screenWidth),
+                            Container(
+                              width: 166.5,
+                              height: 86,
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFF4F3F2),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width: 25,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFFFFFFFF)
+                                              .withOpacity(1.0),
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                        ),
+                                        child: Center(
+                                          child: Image.asset(
+                                            'assets/images/edit.png',
+                                            width: (10 / 393) * screenWidth,
+                                            height: (10 / 852) * screenHeight,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 12),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Target Weight",
+                                            style: TextStyle(
+                                              fontFamily: "source sans pro",
+                                              fontSize: 10,
+                                              color:
+                                                  Colors.black.withOpacity(0.6),
+                                              fontWeight: FontWeight.normal,
+                                              decoration: TextDecoration.none,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 12),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "58",
+                                            style: TextStyle(
+                                              fontFamily: "source sans pro",
+                                              fontSize: 18,
+                                              color:
+                                                  Colors.black.withOpacity(1.0),
+                                              fontWeight: FontWeight.normal,
+                                              decoration: TextDecoration.none,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 40),
+                        const SizedBox(
+                          width: 333,
+                          height: 180,
+                          child: LineChartSample2(),
+                        ),
+                        const SizedBox(height: 15),
+                        Expanded(
+                          child: ListView.builder(
+                            key: UniqueKey(),
+                            itemCount: weightMap.length,
+                            itemBuilder: (context, index) {
+                              final dates = weightMap.keys.toList();
+                              final date = dates[index];
+                              final weight = weightMap[date] ??
+                                  "Default Weight"; // Provide a default value if the weight is null
+                              return Timetile(
+                                isFirst: index == 0,
+                                isLast: index == weightMap.length - 1,
+                                isPast: true,
+                                child1: weight,
+                                child2: date,
+                              );
+                            },
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // Hours wheel
-                              SizedBox(
-                                width: 60,
-                                child: ListWheelScrollView.useDelegate(
-                                  controller: _controller,
-                                  itemExtent: 50,
-                                  perspective: 0.005,
-                                  diameterRatio: 1.2,
-                                  physics: const FixedExtentScrollPhysics(),
-                                  onSelectedItemChanged: (index) {
-                                    setState(() {
-                                      selectedHourIndex = index;
-                                    });
-                                  },
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                    childCount: 272,
-                                    builder: (context, index) {
-                                      final isSelected =
-                                          index == selectedHourIndex;
-                                      return MyHours(
-                                        hours: index,
-                                        fontSize: 35,
-                                        color: isSelected
-                                            ? Colors.white
-                                            : Colors.black,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                width: 60,
-                                child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 50,
-                                  perspective: 0.005,
-                                  diameterRatio: 1.2,
-                                  physics: const FixedExtentScrollPhysics(),
-                                  onSelectedItemChanged: (index) {
-                                    setState(() {
-                                      selectedMinuteIndex = index;
-                                    });
-                                  },
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                    childCount: 10,
-                                    builder: (context, index) {
-                                      final isSelected =
-                                          index == selectedMinuteIndex;
-                                      return MyMinutes(
-                                        mins: index,
-                                        color: isSelected
-                                            ? Colors.white
-                                            : Colors.black,
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                              // AM or PM
-                              SizedBox(
-                                width: 60,
-                                child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 50,
-                                  perspective: 0.005,
-                                  diameterRatio: 1.2,
-                                  physics: const FixedExtentScrollPhysics(),
-                                  onSelectedItemChanged: (index) {
-                                    setState(() {
-                                      selectedAmPmIndex = index;
-                                    });
-                                  },
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                    childCount: 2,
-                                    builder: (context, index) {
-                                      final isSelected =
-                                          index == selectedAmPmIndex;
-                                      if (index == 0) {
-                                        return AmPm(
-                                          isItAm: true,
-                                          color: isSelected
-                                              ? Colors.white
-                                              : Colors.black,
-                                        );
-                                      } else {
-                                        return AmPm(
-                                          isItAm: false,
-                                          color: isSelected
-                                              ? Colors.white
-                                              : Colors.black,
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                        ),
+                        const SizedBox(height: 10),
+                      ],
+                    ),
+                    Positioned(
+                      bottom:
+                          16, // Adjust the value to change the vertical position
+                      right:
+                          0, // Adjust the value to change the horizontal position
+                      child: FloatingActionButton(
+                        onPressed: createnewTask,
+                        child: Icon(Icons.add),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
+
           if (selectedOption == 'Water')
             Expanded(
               child: Container(
@@ -649,15 +792,31 @@ class _TrackingState extends State<Tracking> {
                                   decoration: TextDecoration.none,
                                 ),
                               ),
-                              Text(
-                                "${(count / target * 100).toStringAsFixed(0)}%",
-                                style: const TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Container(
+                                child: (count / target * 100) >= 100
+                                    ? const Text(
+                                        "Goal Achieved",
+                                        style: TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      )
+                                    : Text(
+                                        "${(count / target * 100).toStringAsFixed(0)}%",
+                                        style: const TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
                               ),
                             ],
                           )),

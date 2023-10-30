@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/cupertino.dart';
 
 class Planner extends StatefulWidget {
   const Planner({Key? key}) : super(key: key);
@@ -90,7 +91,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                       selectedDate.isToday
                           ? "Today, $formattedDate $formattedMonth"
                           : "$formattedDate $formattedMonth $formattedYear",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: "source sans pro",
                         fontSize: 14,
                         color: Colors.black,
@@ -324,7 +325,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                 "Enjoy a delicious",
                 style: TextStyle(
                   fontFamily: "source sans pro",
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black.withOpacity(0.6),
                   fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
@@ -334,7 +335,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                 " ",
                 style: TextStyle(
                   fontFamily: "source sans pro",
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black.withOpacity(0.6),
                   fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
@@ -344,7 +345,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                 "2000",
                 style: TextStyle(
                   fontFamily: "source sans pro",
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black.withOpacity(0.6),
                   fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
@@ -354,7 +355,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                 " ",
                 style: TextStyle(
                   fontFamily: "source sans pro",
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black.withOpacity(0.6),
                   fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
@@ -364,7 +365,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                 "calorie day!",
                 style: TextStyle(
                   fontFamily: "source sans pro",
-                  fontSize: 18,
+                  fontSize: 16,
                   color: Colors.black.withOpacity(0.6),
                   fontWeight: FontWeight.normal,
                   decoration: TextDecoration.none,
@@ -1417,12 +1418,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Breakfast in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1454,12 +1455,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Snack-1 in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1491,12 +1492,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Lunch in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1528,12 +1529,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Snack-2 in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1565,12 +1566,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Dinner in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1614,12 +1615,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "carbs in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1651,12 +1652,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Protein in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1688,12 +1689,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Fats in %",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1725,12 +1726,12 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 15),
-                        const Text(
+                        Text(
                           "Fiber in gm",
                           style: TextStyle(
                             fontFamily: "source sans pro",
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Colors.black.withOpacity(0.6),
                             fontWeight: FontWeight.normal,
                             decoration: TextDecoration.none,
                           ),
@@ -1848,6 +1849,7 @@ class _AlertFullScreenDialogState extends State<AlertFullScreenDialog> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
+                            // const SizedBox(width: 20),
                             const Text(
                               "Meal Reminder",
                               style: TextStyle(
@@ -1859,301 +1861,350 @@ class _AlertFullScreenDialogState extends State<AlertFullScreenDialog> {
                               ),
                             ),
                             const Spacer(),
-                            Switch(
-                              value: isSwitched,
-                              onChanged: (value) {
-                                setState(() {
-                                  isSwitched = value;
-                                });
-                              },
-                              activeColor: const Color(0xFFEFC8B1),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.zero,
-                              child: Checkbox(
-                                value: isBreakfast,
-                                activeColor: const Color(0xFFEFC8B1),
-                                onChanged: isSwitched
-                                    ? (value) {
-                                        setState(() {
-                                          isBreakfast = value;
-                                        });
-                                      }
-                                    : null,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            const Text(
-                              "Breakfast",
-                              style: TextStyle(
-                                fontFamily: "source sans pro",
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                decoration: TextDecoration.none,
-                              ),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: isSwitched
-                                  ? () async {
-                                      TimeOfDay? newTime = await showTimePicker(
-                                        context: context,
-                                        initialTime: time,
-                                      );
-                                      if (newTime != null) {
-                                        setState(() {
-                                          time = newTime;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              child: Text(
-                                "${time.hourOfPeriod}:${time.minute.toString().padLeft(2, '0')} ${time.period == DayPeriod.am ? 'AM' : 'PM'}",
-                                style: const TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
+                            Transform.scale(
+                              scale:
+                                  0.7, // Adjust the scale factor as needed to decrease the size
+                              child: CupertinoSwitch(
+                                value: isSwitched,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isSwitched = value;
+                                  });
+                                },
+                                activeColor:
+                                    const Color(0xFFF4F3F2).withOpacity(1.0),
+                                trackColor:
+                                    CupertinoColors.systemGrey.withOpacity(0.8),
+                                thumbColor: !isSwitched
+                                    ? const Color(0xFFFFFFFF)
+                                    : const Color(0xFFEFC8B1),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.zero,
-                              child: Checkbox(
-                                value: isSnack1,
-                                activeColor: const Color(0xFFEFC8B1),
-                                onChanged: isSwitched
-                                    ? (value) {
-                                        setState(() {
-                                          isSnack1 = value;
-                                        });
-                                      }
-                                    : null,
+                        const SizedBox(height: 5),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: isSwitched
+                                ? const Color(0xFFEFC8B1).withOpacity(0.1)
+                                : const Color(0xFFF4F3F2).withOpacity(0.6),
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                          child: Column(
+                            children: [
+                              // const SizedBox(height: 10),
+                              Column(
+                                children: [
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 15),
+                                      Padding(
+                                        padding: EdgeInsets.zero,
+                                        child: Checkbox(
+                                          value: isBreakfast,
+                                          activeColor: const Color(0xFFEFC8B1),
+                                          onChanged: isSwitched
+                                              ? (value) {
+                                                  setState(() {
+                                                    isBreakfast = value;
+                                                  });
+                                                }
+                                              : null,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "Breakfast",
+                                        style: TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 18,
+                                          color: Colors.black.withOpacity(0.6),
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      GestureDetector(
+                                        onTap: isSwitched
+                                            ? () async {
+                                                TimeOfDay? newTime =
+                                                    await showTimePicker(
+                                                  context: context,
+                                                  initialTime: time,
+                                                );
+                                                if (newTime != null) {
+                                                  setState(() {
+                                                    time = newTime;
+                                                  });
+                                                }
+                                              }
+                                            : null,
+                                        child: Text(
+                                          "${time.hourOfPeriod}:${time.minute.toString().padLeft(2, '0')} ${time.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                          style: TextStyle(
+                                            fontFamily: "source sans pro",
+                                            fontSize: 18,
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            fontWeight: FontWeight.normal,
+                                            decoration: TextDecoration.none,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 15),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 15),
+                                      Padding(
+                                        padding: EdgeInsets.zero,
+                                        child: Checkbox(
+                                          value: isSnack1,
+                                          activeColor: const Color(0xFFEFC8B1),
+                                          onChanged: isSwitched
+                                              ? (value) {
+                                                  setState(() {
+                                                    isSnack1 = value;
+                                                  });
+                                                }
+                                              : null,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "Snack 1",
+                                        style: TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 18,
+                                          color: Colors.black.withOpacity(0.6),
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      GestureDetector(
+                                        onTap: isSwitched
+                                            ? () async {
+                                                TimeOfDay? newTime =
+                                                    await showTimePicker(
+                                                  context: context,
+                                                  initialTime: snack1Time,
+                                                );
+                                                if (newTime != null) {
+                                                  setState(() {
+                                                    snack1Time = newTime;
+                                                  });
+                                                }
+                                              }
+                                            : null,
+                                        child: Text(
+                                          "${snack1Time.hourOfPeriod}:${snack1Time.minute.toString().padLeft(2, '0')} ${snack1Time.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                          style: TextStyle(
+                                            fontFamily: "source sans pro",
+                                            fontSize: 18,
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            fontWeight: FontWeight.normal,
+                                            decoration: TextDecoration.none,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 15),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 15),
+                                      Padding(
+                                        padding: EdgeInsets.zero,
+                                        child: Checkbox(
+                                          value: isLunch,
+                                          activeColor: const Color(0xFFEFC8B1),
+                                          onChanged: isSwitched
+                                              ? (value) {
+                                                  setState(() {
+                                                    isLunch = value;
+                                                  });
+                                                }
+                                              : null,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "Lunch",
+                                        style: TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 18,
+                                          color: Colors.black.withOpacity(0.6),
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      GestureDetector(
+                                        onTap: isSwitched
+                                            ? () async {
+                                                TimeOfDay? newTime =
+                                                    await showTimePicker(
+                                                  context: context,
+                                                  initialTime: lunchTime,
+                                                );
+                                                if (newTime != null) {
+                                                  setState(() {
+                                                    lunchTime = newTime;
+                                                  });
+                                                }
+                                              }
+                                            : null,
+                                        child: Text(
+                                          "${lunchTime.hourOfPeriod}:${lunchTime.minute.toString().padLeft(2, '0')} ${lunchTime.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                          style: TextStyle(
+                                            fontFamily: "source sans pro",
+                                            fontSize: 18,
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            fontWeight: FontWeight.normal,
+                                            decoration: TextDecoration.none,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 15),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 15),
+                                      Padding(
+                                        padding: EdgeInsets.zero,
+                                        child: Checkbox(
+                                          value: isSnack2,
+                                          activeColor: const Color(0xFFEFC8B1),
+                                          onChanged: isSwitched
+                                              ? (value) {
+                                                  setState(() {
+                                                    isSnack2 = value;
+                                                  });
+                                                }
+                                              : null,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "Snack 2",
+                                        style: TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 18,
+                                          color: Colors.black.withOpacity(0.6),
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      GestureDetector(
+                                        onTap: isSwitched
+                                            ? () async {
+                                                TimeOfDay? newTime =
+                                                    await showTimePicker(
+                                                  context: context,
+                                                  initialTime: snack2Time,
+                                                );
+                                                if (newTime != null) {
+                                                  setState(() {
+                                                    snack2Time = newTime;
+                                                  });
+                                                }
+                                              }
+                                            : null,
+                                        child: Text(
+                                          "${snack2Time.hourOfPeriod}:${snack2Time.minute.toString().padLeft(2, '0')} ${snack2Time.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                          style: TextStyle(
+                                            fontFamily: "source sans pro",
+                                            fontSize: 18,
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            fontWeight: FontWeight.normal,
+                                            decoration: TextDecoration.none,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 15),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(width: 15),
+                                      Padding(
+                                        padding: EdgeInsets.zero,
+                                        child: Checkbox(
+                                          value: isDinner,
+                                          activeColor: const Color(0xFFEFC8B1),
+                                          onChanged: isSwitched
+                                              ? (value) {
+                                                  setState(() {
+                                                    isDinner = value;
+                                                  });
+                                                }
+                                              : null,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        "Dinner",
+                                        style: TextStyle(
+                                          fontFamily: "source sans pro",
+                                          fontSize: 18,
+                                          color: Colors.black.withOpacity(0.6),
+                                          fontWeight: FontWeight.normal,
+                                          decoration: TextDecoration.none,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      GestureDetector(
+                                        onTap: isSwitched
+                                            ? () async {
+                                                TimeOfDay? newTime =
+                                                    await showTimePicker(
+                                                  context: context,
+                                                  initialTime: dinnerTime,
+                                                );
+                                                if (newTime != null) {
+                                                  setState(() {
+                                                    dinnerTime = newTime;
+                                                  });
+                                                }
+                                              }
+                                            : null,
+                                        child: Text(
+                                          "${dinnerTime.hourOfPeriod}:${dinnerTime.minute.toString().padLeft(2, '0')} ${dinnerTime.period == DayPeriod.am ? 'AM' : 'PM'}",
+                                          style: TextStyle(
+                                            fontFamily: "source sans pro",
+                                            fontSize: 18,
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            fontWeight: FontWeight.normal,
+                                            decoration: TextDecoration.none,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 15),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                ],
                               ),
-                            ),
-                            const SizedBox(width: 5),
-                            const Text(
-                              "Snack 1",
-                              style: TextStyle(
-                                fontFamily: "source sans pro",
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                decoration: TextDecoration.none,
-                              ),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: isSwitched
-                                  ? () async {
-                                      TimeOfDay? newTime = await showTimePicker(
-                                        context: context,
-                                        initialTime: snack1Time,
-                                      );
-                                      if (newTime != null) {
-                                        setState(() {
-                                          snack1Time = newTime;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              child: Text(
-                                "${snack1Time.hourOfPeriod}:${snack1Time.minute.toString().padLeft(2, '0')} ${snack1Time.period == DayPeriod.am ? 'AM' : 'PM'}",
-                                style: const TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.zero,
-                              child: Checkbox(
-                                value: isLunch,
-                                activeColor: const Color(0xFFEFC8B1),
-                                onChanged: isSwitched
-                                    ? (value) {
-                                        setState(() {
-                                          isLunch = value;
-                                        });
-                                      }
-                                    : null,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            const Text(
-                              "Lunch",
-                              style: TextStyle(
-                                fontFamily: "source sans pro",
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                decoration: TextDecoration.none,
-                              ),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: isSwitched
-                                  ? () async {
-                                      TimeOfDay? newTime = await showTimePicker(
-                                        context: context,
-                                        initialTime: lunchTime,
-                                      );
-                                      if (newTime != null) {
-                                        setState(() {
-                                          lunchTime = newTime;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              child: Text(
-                                "${lunchTime.hourOfPeriod}:${lunchTime.minute.toString().padLeft(2, '0')} ${lunchTime.period == DayPeriod.am ? 'AM' : 'PM'}",
-                                style: const TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.zero,
-                              child: Checkbox(
-                                value: isSnack2,
-                                activeColor: const Color(0xFFEFC8B1),
-                                onChanged: isSwitched
-                                    ? (value) {
-                                        setState(() {
-                                          isSnack2 = value;
-                                        });
-                                      }
-                                    : null,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            const Text(
-                              "Snack 2",
-                              style: TextStyle(
-                                fontFamily: "source sans pro",
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                decoration: TextDecoration.none,
-                              ),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: isSwitched
-                                  ? () async {
-                                      TimeOfDay? newTime = await showTimePicker(
-                                        context: context,
-                                        initialTime: snack2Time,
-                                      );
-                                      if (newTime != null) {
-                                        setState(() {
-                                          snack2Time = newTime;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              child: Text(
-                                "${snack2Time.hourOfPeriod}:${snack2Time.minute.toString().padLeft(2, '0')} ${snack2Time.period == DayPeriod.am ? 'AM' : 'PM'}",
-                                style: const TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.zero,
-                              child: Checkbox(
-                                value: isDinner,
-                                activeColor: const Color(0xFFEFC8B1),
-                                onChanged: isSwitched
-                                    ? (value) {
-                                        setState(() {
-                                          isDinner = value;
-                                        });
-                                      }
-                                    : null,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            const Text(
-                              "Dinner",
-                              style: TextStyle(
-                                fontFamily: "source sans pro",
-                                fontSize: 18,
-                                color: Colors.black,
-                                fontWeight: FontWeight.normal,
-                                decoration: TextDecoration.none,
-                              ),
-                            ),
-                            const Spacer(),
-                            GestureDetector(
-                              onTap: isSwitched
-                                  ? () async {
-                                      TimeOfDay? newTime = await showTimePicker(
-                                        context: context,
-                                        initialTime: dinnerTime,
-                                      );
-                                      if (newTime != null) {
-                                        setState(() {
-                                          dinnerTime = newTime;
-                                        });
-                                      }
-                                    }
-                                  : null,
-                              child: Text(
-                                "${dinnerTime.hourOfPeriod}:${dinnerTime.minute.toString().padLeft(2, '0')} ${dinnerTime.period == DayPeriod.am ? 'AM' : 'PM'}",
-                                style: const TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 18,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),

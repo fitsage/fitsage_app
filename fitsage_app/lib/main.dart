@@ -1,4 +1,6 @@
 import 'package:fitsage_app/pages/Home.dart';
+// import 'package:fitsage_app/pages/confetti.dart';
+// import 'package:fitsage_app/views/welcome.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -6,7 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  static const Color primaryColor = const Color(0xFFEFC8B1);
+  static Color primaryColor = const Color(0xFFEFC8B1);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primarySwatch,
       ),
-      home: Home(),
+      home: const Home(),
     );
   }
 }

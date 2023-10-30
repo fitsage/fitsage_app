@@ -32,61 +32,61 @@ class _MealListState extends State<MealList> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return GestureDetector(
-      onTap: openFullScreenDialog,
+      onTap: () {},
       child: Column(
         children: [
           Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              Container(
-                width: 273,
-                height: 258,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFFFFF),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              Container(
-                width: 293,
-                height: 258,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFFFFF),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              Container(
-                width: 313,
-                height: 253,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFFFFF),
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFFe8e8e8).withOpacity(0.7),
-                      blurRadius: 5.0,
-                      offset: const Offset(0, 4),
-                    ),
-                    BoxShadow(
-                      color: const Color(0xFFe8e8e8).withOpacity(0.7),
-                      blurRadius: 5.0,
-                      offset: const Offset(-2, 0),
-                    ),
-                    BoxShadow(
-                      color: const Color(0xFFe8e8e8).withOpacity(0.7),
-                      blurRadius: 5.0,
-                      offset: const Offset(2, 0),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 333,
-                height: 253,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFFFFFF),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
+              // Container(
+              //   width: 273,
+              //   height: 258,
+              //   decoration: BoxDecoration(
+              //     color: const Color(0xFFFFFFFF),
+              //     borderRadius: BorderRadius.circular(15),
+              //   ),
+              // ),
+              // Container(
+              //   width: 293,
+              //   height: 258,
+              //   decoration: BoxDecoration(
+              //     color: const Color(0xFFFFFFFF),
+              //     borderRadius: BorderRadius.circular(15),
+              //   ),
+              // ),
+              // Container(
+              //   width: 313,
+              //   height: 253,
+              //   decoration: BoxDecoration(
+              //     color: const Color(0xFFFFFFFF),
+              //     borderRadius: BorderRadius.circular(15),
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: const Color(0xFFe8e8e8).withOpacity(0.7),
+              //         blurRadius: 5.0,
+              //         offset: const Offset(0, 4),
+              //       ),
+              //       BoxShadow(
+              //         color: const Color(0xFFe8e8e8).withOpacity(0.7),
+              //         blurRadius: 5.0,
+              //         offset: const Offset(-2, 0),
+              //       ),
+              //       BoxShadow(
+              //         color: const Color(0xFFe8e8e8).withOpacity(0.7),
+              //         blurRadius: 5.0,
+              //         offset: const Offset(2, 0),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // Container(
+              //   width: 333,
+              //   height: 253,
+              //   decoration: BoxDecoration(
+              //     color: const Color(0xFFFFFFFF),
+              //     borderRadius: BorderRadius.circular(15),
+              //   ),
+              // ),
               Container(
                 width: 353,
                 height: 248,
@@ -235,7 +235,7 @@ class _MealListState extends State<MealList> {
                                             "Banana ",
                                             style: TextStyle(
                                               fontFamily: "source sans pro",
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color:
                                                   Colors.black.withOpacity(1.0),
                                               fontWeight: FontWeight.normal,
@@ -297,7 +297,7 @@ class _MealListState extends State<MealList> {
                                             "Banana ",
                                             style: TextStyle(
                                               fontFamily: "source sans pro",
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color:
                                                   Colors.black.withOpacity(1.0),
                                               fontWeight: FontWeight.normal,
@@ -359,7 +359,7 @@ class _MealListState extends State<MealList> {
                                             "Banana ",
                                             style: TextStyle(
                                               fontFamily: "source sans pro",
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color:
                                                   Colors.black.withOpacity(1.0),
                                               fontWeight: FontWeight.normal,
@@ -422,7 +422,7 @@ class _MealListState extends State<MealList> {
                                             "Banana",
                                             style: TextStyle(
                                               fontFamily: "source sans pro",
-                                              fontSize: 12,
+                                              fontSize: 10,
                                               color:
                                                   Colors.black.withOpacity(1.0),
                                               fontWeight: FontWeight.normal,
