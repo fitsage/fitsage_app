@@ -10,12 +10,36 @@ class PersonalDialog extends StatefulWidget {
 }
 
 class _PersonalDialogState extends State<PersonalDialog> {
-  String selectedGender = '';
+  String selectedGender = 'male';
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    TextEditingController NameController = TextEditingController();
+    NameController.text = 'Yallapu V Madhuri';
+
+    TextEditingController phoneNumberController = TextEditingController();
+    phoneNumberController.text = '123-456-7890';
+
+    TextEditingController EmailController = TextEditingController();
+    EmailController.text = 'abc@gmail.com';
+
+    TextEditingController ageController = TextEditingController();
+    ageController.text = '25';
+
+    TextEditingController weightKgController = TextEditingController();
+    weightKgController.text = '65';
+    TextEditingController weightGramsController = TextEditingController();
+    weightGramsController.text = '0';
+    String weightUnit = 'Kg';
+
+    String dropdownvalue = 'Kg';
+    var items = [
+      'Kg',
+      'Lb',
+    ];
 
     return WillPopScope(
       onWillPop: () async {
@@ -34,7 +58,7 @@ class _PersonalDialogState extends State<PersonalDialog> {
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
                       padding:
@@ -56,9 +80,114 @@ class _PersonalDialogState extends State<PersonalDialog> {
                     child: ListView(
                       scrollDirection: Axis.vertical,
                       children: [
-                        const SizedBox(height: 15),
+                        const SizedBox(height: 10),
+                        Text(
+                          "Name",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: NameController,
+                          cursorColor: const Color(0xFFF4F3F2),
+                          decoration: const InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              // borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                color: Color(0xFFF4F3F2),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              // borderRadius: BorderRadius.circular(10.0),
+                              borderSide: BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: 'Enter your Name',
+                            labelStyle: TextStyle(fontSize: 18),
+                            contentPadding: EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Phone Number",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: phoneNumberController,
+                          cursorColor: const Color(0xFFF4F3F2),
+                          keyboardType: TextInputType
+                              .phone, // Specify input type for phone number
+                          decoration: const InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFF4F3F2),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: 'Enter your phone number',
+                            labelStyle: TextStyle(fontSize: 18),
+                            contentPadding: EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            prefixText: '+91',
+                            prefixStyle: TextStyle(fontSize: 16),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Email",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: EmailController,
+                          cursorColor: const Color(0xFFF4F3F2),
+                          decoration: const InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFF4F3F2),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: '25',
+                            labelStyle: TextStyle(fontSize: 18),
+                            contentPadding: EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             GestureDetector(
                               onTap: () {
@@ -67,18 +196,14 @@ class _PersonalDialogState extends State<PersonalDialog> {
                                 });
                               },
                               child: Container(
-                                width: (100 / 393) * screenWidth,
+                                width: (110 / 393) * screenWidth,
                                 height: (58 / 852) * screenHeight,
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xFFEFC8B1).withOpacity(0.1),
+                                  color: selectedGender == 'male'
+                                      ? const Color(0xFFEFC8B1).withOpacity(0.1)
+                                      : const Color(0xFFF4F3F2)
+                                          .withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(15.0),
-                                  border: Border.all(
-                                    color: selectedGender == 'male'
-                                        ? Colors.black.withOpacity(0.3)
-                                        : Colors.transparent,
-                                    width: 2,
-                                  ),
                                 ),
                                 child: Center(
                                   child: Row(
@@ -109,7 +234,7 @@ class _PersonalDialogState extends State<PersonalDialog> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: (16.5 / 393) * screenWidth),
+                            const Spacer(),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -117,18 +242,14 @@ class _PersonalDialogState extends State<PersonalDialog> {
                                 });
                               },
                               child: Container(
-                                width: (100 / 393) * screenWidth,
+                                width: (110 / 393) * screenWidth,
                                 height: (58 / 852) * screenHeight,
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xFFEFC8B1).withOpacity(0.1),
+                                  color: selectedGender == 'female'
+                                      ? const Color(0xFFEFC8B1).withOpacity(0.1)
+                                      : const Color(0xFFF4F3F2)
+                                          .withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(15.0),
-                                  border: Border.all(
-                                    color: selectedGender == 'female'
-                                        ? Colors.black.withOpacity(0.3)
-                                        : Colors.transparent,
-                                    width: 2,
-                                  ),
                                 ),
                                 child: Center(
                                   child: Row(
@@ -159,7 +280,7 @@ class _PersonalDialogState extends State<PersonalDialog> {
                                 ),
                               ),
                             ),
-                            SizedBox(width: (16.5 / 393) * screenWidth),
+                            const Spacer(),
                             GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -167,18 +288,14 @@ class _PersonalDialogState extends State<PersonalDialog> {
                                 });
                               },
                               child: Container(
-                                width: (100 / 393) * screenWidth,
+                                width: (110 / 393) * screenWidth,
                                 height: (58 / 852) * screenHeight,
                                 decoration: BoxDecoration(
-                                  color:
-                                      const Color(0xFFEFC8B1).withOpacity(0.1),
+                                  color: selectedGender == 'other'
+                                      ? const Color(0xFFEFC8B1).withOpacity(0.1)
+                                      : const Color(0xFFF4F3F2)
+                                          .withOpacity(0.6),
                                   borderRadius: BorderRadius.circular(15.0),
-                                  border: Border.all(
-                                    color: selectedGender == 'other'
-                                        ? Colors.black.withOpacity(0.3)
-                                        : Colors.transparent,
-                                    width: 2,
-                                  ),
                                 ),
                                 child: Center(
                                   child: Text(
@@ -198,6 +315,186 @@ class _PersonalDialogState extends State<PersonalDialog> {
                             ),
                           ],
                         ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Age",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        TextField(
+                          controller: ageController,
+                          cursorColor: const Color(0xFFF4F3F2),
+                          keyboardType: TextInputType.number,
+                          decoration: const InputDecoration(
+                            alignLabelWithHint: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFF4F3F2),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xFFEFC8B1),
+                              ),
+                            ),
+                            labelText: 'Enter your age',
+                            labelStyle: TextStyle(fontSize: 18),
+                            contentPadding: EdgeInsets.all(15),
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        const Text(
+                          "Weight",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 14,
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Container(
+                              width: 130,
+                              child: TextField(
+                                controller: weightKgController,
+                                cursorColor: const Color(0xFFF4F3F2),
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
+                                  alignLabelWithHint: true,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFF4F3F2),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFEFC8B1),
+                                    ),
+                                  ),
+                                  labelText: '65',
+                                  labelStyle: TextStyle(fontSize: 18),
+                                  contentPadding: EdgeInsets.all(15),
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.never,
+                                  suffixText: 'Kgs',
+                                  suffixStyle: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Container(
+                              width: 130,
+                              child: TextField(
+                                controller: weightGramsController,
+                                cursorColor: const Color(0xFFF4F3F2),
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  alignLabelWithHint: true,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFF4F3F2),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xFFEFC8B1),
+                                    ),
+                                  ),
+                                  labelText: '0',
+                                  labelStyle: TextStyle(fontSize: 18),
+                                  contentPadding: EdgeInsets.all(15),
+                                  floatingLabelBehavior:
+                                      FloatingLabelBehavior.never,
+                                  suffixText: dropdownvalue == 'Kg' ? 'g' : '',
+                                  suffixStyle: TextStyle(fontSize: 16),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Container(
+                              width: 73,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Color(0xFFF4F3F2),
+                                  width: 1.0,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                child: DropdownButton(
+                                  value: dropdownvalue,
+                                  items: items.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownvalue = newValue!;
+                                    });
+                                  },
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  style: const TextStyle(
+                                    fontFamily: "source sans pro",
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.normal,
+                                    decoration: TextDecoration.none,
+                                  ),
+                                  underline: Container(),
+                                  isExpanded: true,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Container(
+                          width: 50,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Color(0xFFF4F3F2),
+                              width: 1.0,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                            child: DropdownButton(
+                              value: dropdownvalue,
+                              items: items.map((String items) {
+                                return DropdownMenuItem(
+                                  value: items,
+                                  child: Text(items),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownvalue = newValue!;
+                                });
+                              },
+                              icon: Icon(Icons.keyboard_arrow_down),
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                              underline: Container(),
+                              isExpanded: true,
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

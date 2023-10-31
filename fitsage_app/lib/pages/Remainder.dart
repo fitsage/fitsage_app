@@ -93,14 +93,8 @@ class _RemainderDialogState extends State<RemainderDialog> {
                             decoration: BoxDecoration(
                               color: isSwitched
                                   ? const Color(0xFFEFC8B1).withOpacity(0.1)
-                                  : Colors.transparent,
+                                  : const Color(0xFFF4F3F2).withOpacity(0.6),
                               borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(
-                                color: !isSwitched
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.transparent,
-                                width: 0.5,
-                              ),
                             ),
                             child: Column(
                               children: [
@@ -498,14 +492,8 @@ class _RemainderDialogState extends State<RemainderDialog> {
                             decoration: BoxDecoration(
                               color: isSwitchedsleep
                                   ? const Color(0xFFEFC8B1).withOpacity(0.1)
-                                  : Colors.transparent,
+                                  : const Color(0xFFF4F3F2).withOpacity(0.6),
                               borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(
-                                color: !isSwitchedsleep
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.transparent,
-                                width: 0.5,
-                              ),
                             ),
                             child: Column(
                               children: [
@@ -712,14 +700,8 @@ class _RemainderDialogState extends State<RemainderDialog> {
                             decoration: BoxDecoration(
                               color: isSwitchedWater
                                   ? const Color(0xFFEFC8B1).withOpacity(0.1)
-                                  : Colors.transparent,
+                                  : const Color(0xFFF4F3F2).withOpacity(0.6),
                               borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(
-                                color: !isSwitchedWater
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.transparent,
-                                width: 0.5,
-                              ),
                             ),
                             child: Column(
                               children: [

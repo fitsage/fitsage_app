@@ -350,26 +350,26 @@ class _MainPageState extends State<MainPage> {
                     Column(
                       children: [
                         Container(
-                          height: 55,
+                          height: 60,
                           width: 363,
                           child: PageView(
                             controller: pageController,
                             children: List.generate(5, (index) {
                               return Container(
-                                height: 55,
+                                height: 60,
                                 margin:
                                     const EdgeInsets.symmetric(horizontal: 5),
                                 child: Stack(
                                   children: [
                                     Container(
-                                      height: 55,
+                                      height: 60,
                                       width: 363,
                                       decoration: BoxDecoration(
                                         color: const Color(0xFFEFC8B1)
                                             .withOpacity(0.2),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
-                                      child: Column(
+                                      child: const Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         crossAxisAlignment:
@@ -379,430 +379,6 @@ class _MainPageState extends State<MainPage> {
                                         ],
                                       ),
                                     ),
-                                    // SizedBox(
-                                    //   height: (11 / 852) * screenHeight,
-                                    // ),
-                                    // Align(
-                                    //   alignment: Alignment.bottomCenter,
-                                    //   child: Container(
-                                    //     height: 76,
-                                    //     width: 293,
-                                    //     margin:
-                                    //         const EdgeInsets.only(bottom: 5),
-                                    //     decoration: BoxDecoration(
-                                    //       color: Colors.white,
-                                    //       border: Border.all(
-                                    //         color: const Color(0xFFe8e8e8)
-                                    //             .withOpacity(0.6),
-                                    //         width: 1.0,
-                                    //       ),
-                                    //       borderRadius:
-                                    //           BorderRadius.circular(15),
-                                    //     ),
-                                    //     child: Row(
-                                    //       crossAxisAlignment:
-                                    //           CrossAxisAlignment.center,
-                                    //       children: [
-                                    //         const Spacer(),
-                                    //         Column(
-                                    //           mainAxisAlignment:
-                                    //               MainAxisAlignment.center,
-                                    //           crossAxisAlignment:
-                                    //               CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Row(
-                                    //               children: [
-                                    //                 const Text(
-                                    //                   "Protein",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   ":",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   " ",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 Text(
-                                    //                   "10%",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 8,
-                                    //                     color: Colors.black
-                                    //                         .withOpacity(0.6),
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //               ],
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             const SizedBox(
-                                    //               width: 55,
-                                    //               height: 4,
-                                    //               child:
-                                    //                   LinearProgressIndicator(
-                                    //                 value: 0.4,
-                                    //                 valueColor:
-                                    //                     AlwaysStoppedAnimation<
-                                    //                             Color>(
-                                    //                         Color(0xFFEFC8B1)),
-                                    //                 backgroundColor:
-                                    //                     Color(0xFFD9D9D9),
-                                    //                 semanticsValue: '40%',
-                                    //               ),
-                                    //             ),
-                                    //             const SizedBox(
-                                    //               height: 11,
-                                    //             ),
-                                    //             Row(
-                                    //               children: [
-                                    //                 const Text(
-                                    //                   "Fats",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   ":",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   " ",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 Text(
-                                    //                   "10%",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 8,
-                                    //                     color: Colors.black
-                                    //                         .withOpacity(0.6),
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //               ],
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             const SizedBox(
-                                    //               width: 55,
-                                    //               height: 4,
-                                    //               child:
-                                    //                   LinearProgressIndicator(
-                                    //                 value: 1,
-                                    //                 valueColor:
-                                    //                     AlwaysStoppedAnimation<
-                                    //                             Color>(
-                                    //                         Color(0xFFEFC8B1)),
-                                    //                 backgroundColor:
-                                    //                     Color(0xFFD9D9D9),
-                                    //                 semanticsValue: '40%',
-                                    //               ),
-                                    //             )
-                                    //           ],
-                                    //         ),
-                                    //         const Spacer(),
-                                    //         Column(
-                                    //           mainAxisAlignment:
-                                    //               MainAxisAlignment.center,
-                                    //           crossAxisAlignment:
-                                    //               CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             Row(
-                                    //               children: [
-                                    //                 const Text(
-                                    //                   "Carbs",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   ":",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   " ",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 Text(
-                                    //                   "10%",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 8,
-                                    //                     color: Colors.black
-                                    //                         .withOpacity(0.6),
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //               ],
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             const SizedBox(
-                                    //               width: 55,
-                                    //               height: 4,
-                                    //               child:
-                                    //                   LinearProgressIndicator(
-                                    //                 value: 0.4,
-                                    //                 valueColor:
-                                    //                     AlwaysStoppedAnimation<
-                                    //                             Color>(
-                                    //                         Color(0xFFEFC8B1)),
-                                    //                 backgroundColor:
-                                    //                     Color(0xFFD9D9D9),
-                                    //                 semanticsValue: '40%',
-                                    //               ),
-                                    //             ),
-                                    //             const SizedBox(
-                                    //               height: 11,
-                                    //             ),
-                                    //             Row(
-                                    //               children: [
-                                    //                 const Text(
-                                    //                   "Fiber",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   ":",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 const Text(
-                                    //                   " ",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 10,
-                                    //                     color: Colors.black,
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //                 Text(
-                                    //                   "10%",
-                                    //                   style: TextStyle(
-                                    //                     fontFamily:
-                                    //                         "source sans pro",
-                                    //                     fontSize: 8,
-                                    //                     color: Colors.black
-                                    //                         .withOpacity(0.6),
-                                    //                     fontWeight:
-                                    //                         FontWeight.normal,
-                                    //                     decoration:
-                                    //                         TextDecoration.none,
-                                    //                   ),
-                                    //                 ),
-                                    //               ],
-                                    //             ),
-                                    //             const SizedBox(height: 5),
-                                    //             const SizedBox(
-                                    //               width: 55,
-                                    //               height: 4,
-                                    //               child:
-                                    //                   LinearProgressIndicator(
-                                    //                 value: 0.4,
-                                    //                 valueColor:
-                                    //                     AlwaysStoppedAnimation<
-                                    //                         Color>(Color(0xFF)),
-                                    //                 backgroundColor:
-                                    //                     Color(0xFFD9D9D9),
-                                    //                 semanticsValue: '40%',
-                                    //               ),
-                                    //             )
-                                    //           ],
-                                    //         ),
-                                    //         const Spacer(),
-                                    //         Column(
-                                    //           mainAxisAlignment:
-                                    //               MainAxisAlignment.center,
-                                    //           crossAxisAlignment:
-                                    //               CrossAxisAlignment.start,
-                                    //           children: [
-                                    //             InkWell(
-                                    //               onTap: () {},
-                                    //               child: Row(
-                                    //                 mainAxisAlignment:
-                                    //                     MainAxisAlignment
-                                    //                         .center,
-                                    //                 children: [
-                                    //                   SizedBox(
-                                    //                     width: 16.65,
-                                    //                     height: 10,
-                                    //                     child: Image.asset(
-                                    //                       'assets/images/addfood.png',
-                                    //                       fit: BoxFit.cover,
-                                    //                     ),
-                                    //                   ),
-                                    //                   const SizedBox(width: 5),
-                                    //                   const Text(
-                                    //                     "Add food",
-                                    //                     style: TextStyle(
-                                    //                       fontFamily:
-                                    //                           "source sans pro",
-                                    //                       fontSize: 12,
-                                    //                       color: Colors.black,
-                                    //                       fontWeight:
-                                    //                           FontWeight.normal,
-                                    //                       decoration:
-                                    //                           TextDecoration
-                                    //                               .none,
-                                    //                     ),
-                                    //                   ),
-                                    //                 ],
-                                    //               ),
-                                    //             ),
-                                    //             const SizedBox(
-                                    //               height: 18,
-                                    //             ),
-                                    //             InkWell(
-                                    //               onTap: () {},
-                                    //               child: Row(
-                                    //                 mainAxisAlignment:
-                                    //                     MainAxisAlignment
-                                    //                         .center,
-                                    //                 children: [
-                                    //                   const SizedBox(
-                                    //                       width: 2.5),
-                                    //                   SizedBox(
-                                    //                     width: 12,
-                                    //                     height: 11.928,
-                                    //                     child: Image.asset(
-                                    //                       'assets/images/orderfood.png',
-                                    //                       fit: BoxFit.cover,
-                                    //                     ),
-                                    //                   ),
-                                    //                   const SizedBox(width: 5),
-                                    //                   const Text(
-                                    //                     "Order food",
-                                    //                     style: TextStyle(
-                                    //                       fontFamily:
-                                    //                           "source sans pro",
-                                    //                       fontSize: 12,
-                                    //                       color: Colors.black,
-                                    //                       fontWeight:
-                                    //                           FontWeight.normal,
-                                    //                       decoration:
-                                    //                           TextDecoration
-                                    //                               .none,
-                                    //                     ),
-                                    //                   ),
-                                    //                 ],
-                                    //               ),
-                                    //             ),
-                                    //           ],
-                                    //         ),
-                                    //         const Spacer(),
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               );
@@ -830,8 +406,69 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ],
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          width: (20 / 393) * screenWidth,
+                        ),
+                        Text(
+                          "Enjoy a delicious",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        Text(
+                          " ",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        Text(
+                          "2000",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        Text(
+                          " ",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                        Text(
+                          "calorie day!",
+                          style: TextStyle(
+                            fontFamily: "source sans pro",
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.none,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Container(
-                      height: 115,
+                      height: 84,
                       width: 353,
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFFFFF).withOpacity(1.0),
@@ -869,11 +506,11 @@ class _MainPageState extends State<MainPage> {
                                   alignment: Alignment.center,
                                   children: [
                                     const SizedBox(
-                                      width: 70,
-                                      height: 70,
+                                      width: 53,
+                                      height: 53,
                                       child: CircularProgressIndicator(
                                         value: 0.4,
-                                        strokeWidth: 15,
+                                        strokeWidth: 12,
                                         valueColor:
                                             AlwaysStoppedAnimation<Color>(
                                                 Color(0xFFEFC8B1)),
@@ -915,67 +552,6 @@ class _MainPageState extends State<MainPage> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: (20 / 393) * screenWidth,
-                                      ),
-                                      Text(
-                                        "Enjoy a delicious",
-                                        style: TextStyle(
-                                          fontFamily: "source sans pro",
-                                          fontSize: 12,
-                                          color: Colors.black.withOpacity(1.0),
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.none,
-                                        ),
-                                      ),
-                                      Text(
-                                        " ",
-                                        style: TextStyle(
-                                          fontFamily: "source sans pro",
-                                          fontSize: 12,
-                                          color: Colors.black.withOpacity(1.0),
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.none,
-                                        ),
-                                      ),
-                                      Text(
-                                        "2000",
-                                        style: TextStyle(
-                                          fontFamily: "source sans pro",
-                                          fontSize: 12,
-                                          color: Colors.black.withOpacity(1.0),
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.none,
-                                        ),
-                                      ),
-                                      Text(
-                                        " ",
-                                        style: TextStyle(
-                                          fontFamily: "source sans pro",
-                                          fontSize: 12,
-                                          color: Colors.black.withOpacity(1.0),
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.none,
-                                        ),
-                                      ),
-                                      Text(
-                                        "calorie day!",
-                                        style: TextStyle(
-                                          fontFamily: "source sans pro",
-                                          fontSize: 12,
-                                          color: Colors.black.withOpacity(1.0),
-                                          fontWeight: FontWeight.normal,
-                                          decoration: TextDecoration.none,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [

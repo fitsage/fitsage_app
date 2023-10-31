@@ -36,13 +36,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: SizedBox(
-                    width: (17 / 393) * screenWidth,
-                    height: (19 / 852) * screenHeight,
+                    width: (16 / 393) * screenWidth,
+                    height: (18 / 852) * screenHeight,
                     child: Opacity(
                       opacity: currentIndex == 0 ? 1.0 : 0.6,
-                      child: Image.asset('assets/images/Home.png',
-                          width: (16 / 393) * screenWidth,
-                          height: (18 / 852) * screenHeight),
+                      child: Image.asset(
+                        'assets/images/Home.png',
+                        // width: (16 / 393) * screenWidth,
+                        // height: (18 / 852) * screenHeight,
+                      ),
                     )),
               ),
             ),
@@ -51,13 +53,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: SizedBox(
-                    width: (17 / 393) * screenWidth,
-                    height: (19 / 852) * screenHeight,
+                    width: (16.97 / 393) * screenWidth,
+                    height: (18 / 852) * screenHeight,
                     child: Opacity(
                       opacity: currentIndex == 1 ? 1.0 : 0.6,
-                      child: Image.asset('assets/images/planner.png',
-                          width: (16.97 / 393) * screenWidth,
-                          height: (18 / 852) * screenHeight),
+                      child: Image.asset(
+                        'assets/images/planner.png',
+                        // width: (16.97 / 393) * screenWidth,
+                        // height: (18 / 852) * screenHeight,
+                      ),
                     )),
               ),
             ),
@@ -66,29 +70,34 @@ class CustomBottomNavigationBar extends StatelessWidget {
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: SizedBox(
-                    width: (19 / 393) * screenWidth,
-                    height: (19 / 852) * screenHeight,
+                    width: (18 / 393) * screenWidth,
+                    height: (18 / 852) * screenHeight,
                     child: Opacity(
                       opacity: currentIndex == 2 ? 1.0 : 0.6,
-                      child: Image.asset('assets/images/tracking.png',
-                          width: (18 / 393) * screenWidth,
-                          height: (18 / 852) * screenHeight),
+                      child: Image.asset(
+                        'assets/images/tracking.png',
+                        // width: (18 / 393) * screenWidth,
+                        // height: (18 / 852) * screenHeight,
+                      ),
                     )),
               ),
             ),
             BottomNavigationBarItem(
-              label: "Glossary List",
+              label: "Glossary",
               icon: Padding(
                 padding: const EdgeInsets.only(bottom: 4.0),
                 child: SizedBox(
-                    width: (17 / 393) * screenWidth,
-                    height: (19 / 852) * screenHeight,
-                    child: Opacity(
-                      opacity: currentIndex == 3 ? 1.0 : 0.6,
-                      child: Image.asset('assets/images/list.png',
-                          width: (16 / 393) * screenWidth,
-                          height: (18 / 852) * screenHeight),
-                    )),
+                  width: (16 / 393) * screenWidth,
+                  height: (18 / 852) * screenHeight,
+                  child: Opacity(
+                    opacity: currentIndex == 3 ? 1.0 : 0.6,
+                    child: Image.asset(
+                      'assets/images/list.png',
+                      // width: (16 / 393) * screenWidth,
+                      // height: (18 / 852) * screenHeight,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
