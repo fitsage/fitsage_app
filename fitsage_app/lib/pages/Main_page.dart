@@ -6,6 +6,7 @@ import 'package:fitsage_app/pages/Tracking_Alert.dart';
 import 'package:fitsage_app/pages/goals.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -110,14 +111,13 @@ class _MainPageState extends State<MainPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 16.71,
-                        height: 17.66,
-                        child: Image.asset(
-                          'assets/images/planner.png',
-                          fit: BoxFit.cover,
+                        height: 18,
+                        child: SvgPicture.asset(
+                          "assets/icons/planner.svg",
+                          height: 18,
                         ),
                       ),
-                      SizedBox(width: (6 / 393) * screenWidth),
+                      SizedBox(width: (5 / 393) * screenWidth),
                       Text(
                         "Today",
                         style: TextStyle(
@@ -128,16 +128,15 @@ class _MainPageState extends State<MainPage> {
                           decoration: TextDecoration.none,
                         ),
                       ),
-                      SizedBox(width: (15 / 393) * screenWidth),
+                      SizedBox(width: (12 / 393) * screenWidth),
                       SizedBox(
-                        width: 12.72,
-                        height: 17.66,
-                        child: Image.asset(
-                          'assets/images/streak.png',
-                          fit: BoxFit.cover,
+                        height: 18,
+                        child: SvgPicture.asset(
+                          "assets/icons/streak.svg",
+                          height: 18,
                         ),
                       ),
-                      SizedBox(width: (6 / 393) * screenWidth),
+                      SizedBox(width: (5 / 393) * screenWidth),
                       Text(
                         "2days",
                         style: TextStyle(
@@ -148,16 +147,15 @@ class _MainPageState extends State<MainPage> {
                           decoration: TextDecoration.none,
                         ),
                       ),
-                      SizedBox(width: (15 / 393) * screenWidth),
+                      SizedBox(width: (12 / 393) * screenWidth),
                       SizedBox(
-                        width: 14,
-                        height: 17.66,
-                        child: Image.asset(
-                          'assets/images/notification.png',
-                          fit: BoxFit.cover,
+                        height: 18,
+                        child: SvgPicture.asset(
+                          "assets/icons/Notification.svg",
+                          height: 18,
                         ),
                       ),
-                      SizedBox(width: (15 / 393) * screenWidth),
+                      SizedBox(width: (12 / 393) * screenWidth),
                       GestureDetector(
                         onTap: openAlertFullScreenDialog,
                         child: Container(
@@ -469,7 +467,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                     Container(
                       height: 84,
-                      width: 353,
+                      width: (353 / 393) * screenWidth,
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFFFFF).withOpacity(1.0),
                         borderRadius: BorderRadius.circular(15),
@@ -493,7 +491,7 @@ class _MainPageState extends State<MainPage> {
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
