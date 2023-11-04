@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
 
-class Planner extends StatefulWidget {
-  const Planner({Key? key}) : super(key: key);
+class FitMeal extends StatefulWidget {
+  const FitMeal({Key? key}) : super(key: key);
 
   @override
-  _PlannerState createState() => _PlannerState();
+  _FitMealState createState() => _FitMealState();
 }
 
-class _PlannerState extends State<Planner> with TickerProviderStateMixin {
+class _FitMealState extends State<FitMeal> with TickerProviderStateMixin {
   late DateTime selectedDate;
 
   @override
@@ -678,12 +678,13 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           Expanded(
             child: SizedBox(
               width: 353,
               child: ListView(
                 scrollDirection: Axis.vertical,
+                padding: EdgeInsets.zero,
                 children: [
                   Container(
                     width: 353,
@@ -1862,8 +1863,8 @@ class _AlertFullScreenDialogState extends State<AlertFullScreenDialog> {
                             ),
                             const Spacer(),
                             Transform.scale(
-                              scale:
-                                  0.7, // Adjust the scale factor as needed to decrease the size
+                              scale: 0.7,
+                              // Adjust the scale factor as needed to decrease the size
                               child: CupertinoSwitch(
                                 value: isSwitched,
                                 onChanged: (value) {

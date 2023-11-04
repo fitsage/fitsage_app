@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
 
   List<Widget> pages = [
     MainPage(),
-    Planner(),
+    FitMeal(),
     Tracking(selectedOption: 'Calories'),
     Shopping(),
   ];
