@@ -50,7 +50,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     height: 18,
                     color: currentIndex == 0
                         ? Colors.black
-                        : Colors.black.withOpacity(0.4),
+                        : Colors.black.withOpacity(0.5),
                   ),
                   // Container(
                   //     height: (18 / 852) * screenHeight,
@@ -73,7 +73,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     height: 18,
                     color: currentIndex == 1
                         ? Colors.black
-                        : Colors.black.withOpacity(0.4),
+                        : Colors.black.withOpacity(0.5),
                   ),
                   // Container(
                   //     height: (18 / 852) * screenHeight,
@@ -96,7 +96,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     height: 18,
                     color: currentIndex == 2
                         ? Colors.black
-                        : Colors.black.withOpacity(0.4),
+                        : Colors.black.withOpacity(0.5),
                   ),
                   // Container(
                   //     height: (18 / 852) * screenHeight,
@@ -119,7 +119,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     height: 18,
                     color: currentIndex == 3
                         ? Colors.black
-                        : Colors.black.withOpacity(0.4),
+                        : Colors.black.withOpacity(0.5),
                   ),
                   // Container(
                   //   height: (18 / 852) * screenHeight,
