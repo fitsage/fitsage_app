@@ -76,6 +76,9 @@ flutter:
     - assets/icons/planner.svg
     - assets/icons/Notification.svg
     - assets/icons/streak.svg
+    - assets/icons/Setting.svg
+    - assets/icons/clock.svg
+    - assets/icons/Right.svg
     - assets/images/back.png
     - assets/images/welcome.png
     - assets/images/female.png

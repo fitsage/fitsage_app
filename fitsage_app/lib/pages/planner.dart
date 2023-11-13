@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:timeline_tile/timeline_tile.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Planner extends StatefulWidget {
   const Planner({Key? key}) : super(key: key);
@@ -72,6 +74,16 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
     String formattedDate = DateFormat('d').format(selectedDate);
     String formattedMonth = DateFormat('MMMM').format(selectedDate);
     String formattedYear = DateFormat('y').format(selectedDate);
+    double breakfast_target = 1000;
+    double breakfast_Cal_intake = 400;
+    double snack1_target = 1000;
+    double snack1_Cal_intake = 1000;
+    double snack2_target = 1000;
+    double snack2_Cal_intake = 400;
+    double lunch_target = 1000;
+    double lunch_Cal_intake = 400;
+    double dinner_target = 1000;
+    double dinner_Cal_intake = 400;
 
     return Container(
       child: Column(
@@ -109,25 +121,17 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
                   children: [
                     GestureDetector(
                       onTap: openFullScreenDialog,
-                      child: SizedBox(
-                        width: 15,
+                      child: SvgPicture.asset(
+                        "assets/icons/Setting.svg",
                         height: 15,
-                        child: Image.asset(
-                          'assets/images/setting.png',
-                          fit: BoxFit.cover,
-                        ),
                       ),
                     ),
                     const SizedBox(width: 15),
                     GestureDetector(
                       onTap: openAlertFullScreenDialog,
-                      child: SizedBox(
-                        width: 16.88,
+                      child: SvgPicture.asset(
+                        "assets/icons/clock.svg",
                         height: 15,
-                        child: Image.asset(
-                          'assets/images/alert.png',
-                          fit: BoxFit.cover,
-                        ),
                       ),
                     ),
                   ],
@@ -312,7 +316,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
             ],
           ),
           SizedBox(
-            height: (30 / 852) * screenHeight,
+            height: (20 / 852) * screenHeight,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -378,7 +382,7 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
             width: 353,
             height: 85,
             decoration: BoxDecoration(
-              color: Colors.transparent,
+              color: const Color(0xFFFFFFFF),
               borderRadius: BorderRadius.circular(15.0),
               border: Border.all(
                 color: Colors.black.withOpacity(0.5),
@@ -678,561 +682,1117 @@ class _PlannerState extends State<Planner> with TickerProviderStateMixin {
               ],
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           Expanded(
             child: SizedBox(
               width: 353,
               child: ListView(
-                scrollDirection: Axis.vertical,
+                padding: EdgeInsets.all(0),
                 children: [
                   Container(
                     width: 353,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.5),
-                        width: 0.4,
-                      ),
                     ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(width: 15),
-                              const Text(
-                                "Breakfast",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "0 / 1000 Kcal",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 12,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Container(
-                                width: 16,
-                                height: 16,
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: 25,
+                                height: 25,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color:
-                                      const Color(0xFFF4F3F2).withOpacity(1.0),
+                                      const Color(0xFFF4F3F2).withOpacity(0.7),
                                 ),
-                                child: Center(
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 6,
+                                child: (breakfast_Cal_intake /
+                                            breakfast_target) >=
+                                        1
+                                    ? Center(
+                                        child: SvgPicture.asset(
+                                          "assets/icons/Right.svg",
+                                          height: 10,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: SizedBox(
+                                          width: 21,
+                                          height: 21,
+                                          child: CircularProgressIndicator(
+                                            value: breakfast_Cal_intake /
+                                                breakfast_target,
+                                            strokeWidth: 2,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(Color(0xFFEFC8B1)),
+                                            semanticsValue: '40%',
+                                          ),
+                                        ),
+                                      )),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Breakfast",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "${breakfast_Cal_intake.toStringAsFixed(0)} / ${breakfast_target.toStringAsFixed(0)} Cal",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(0.6),
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 25,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 190,
+                                  child: VerticalDivider(
+                                    width: 150,
+                                    color: Color(0xFFEFC8B1),
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              children: [
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 318,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFC8B1).withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "Add other Food",
+                                      style: TextStyle(
+                                        fontFamily: "source sans pro",
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.none,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 15),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 323,
-                                child: ClipOval(
-                                  child: Divider(
-                                    color: Colors.black.withOpacity(0.5),
-                                    thickness: 0.4,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 15),
                   Container(
                     width: 353,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.5),
-                        width: 0.4,
-                      ),
                     ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(width: 15),
-                              const Text(
-                                "Snack 1",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "0 / 1000 Kcal",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 12,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Container(
-                                width: 16,
-                                height: 16,
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: 25,
+                                height: 25,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color:
-                                      const Color(0xFFF4F3F2).withOpacity(1.0),
+                                      const Color(0xFFF4F3F2).withOpacity(0.7),
                                 ),
-                                child: Center(
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 6,
+                                child: (snack1_Cal_intake / snack1_target) >= 1
+                                    ? Center(
+                                        child: SvgPicture.asset(
+                                          "assets/icons/Right.svg",
+                                          height: 10,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: SizedBox(
+                                          width: 21,
+                                          height: 21,
+                                          child: CircularProgressIndicator(
+                                            value: snack1_Cal_intake /
+                                                snack1_target,
+                                            strokeWidth: 2,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(Color(0xFFEFC8B1)),
+                                            semanticsValue: '40%',
+                                          ),
+                                        ),
+                                      )),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Snack 1",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "${snack1_Cal_intake.toStringAsFixed(0)} / ${snack1_target.toStringAsFixed(0)} Cal",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(0.6),
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              width: 25,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 190,
+                                  child: VerticalDivider(
+                                    width: 150,
+                                    color: Color(0xFFEFC8B1),
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              children: [
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 318,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFC8B1).withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "Add other Food",
+                                      style: TextStyle(
+                                        fontFamily: "source sans pro",
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.none,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 15),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 323,
-                                child: ClipOval(
-                                  child: Divider(
-                                    color: Colors.black.withOpacity(0.5),
-                                    thickness: 0.4,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 15),
                   Container(
                     width: 353,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.5),
-                        width: 0.4,
-                      ),
                     ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(width: 15),
-                              const Text(
-                                "Lunch",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "0 / 1000 Kcal",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 12,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Container(
-                                width: 16,
-                                height: 16,
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: 25,
+                                height: 25,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color:
-                                      const Color(0xFFF4F3F2).withOpacity(1.0),
+                                      const Color(0xFFF4F3F2).withOpacity(0.7),
                                 ),
-                                child: Center(
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 6,
+                                child: (lunch_Cal_intake / lunch_target) >= 1
+                                    ? Center(
+                                        child: SvgPicture.asset(
+                                          "assets/icons/Right.svg",
+                                          height: 10,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: SizedBox(
+                                          width: 21,
+                                          height: 21,
+                                          child: CircularProgressIndicator(
+                                            value:
+                                                lunch_Cal_intake / lunch_target,
+                                            strokeWidth: 2,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(Color(0xFFEFC8B1)),
+                                            semanticsValue: '40%',
+                                          ),
+                                        ),
+                                      )),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Lunch",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "${lunch_Cal_intake.toStringAsFixed(0)} / ${lunch_target.toStringAsFixed(0)} Cal",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(0.6),
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              width: 25,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 190,
+                                  child: VerticalDivider(
+                                    width: 150,
+                                    color: Color(0xFFEFC8B1),
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              children: [
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 318,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFC8B1).withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "Add other Food",
+                                      style: TextStyle(
+                                        fontFamily: "source sans pro",
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.none,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 15),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 323,
-                                child: ClipOval(
-                                  child: Divider(
-                                    color: Colors.black.withOpacity(0.5),
-                                    thickness: 0.4,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 15),
                   Container(
                     width: 353,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.5),
-                        width: 0.4,
-                      ),
                     ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(width: 15),
-                              const Text(
-                                "Snack 2",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "0 / 1000 Kcal",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 12,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Container(
-                                width: 16,
-                                height: 16,
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: 25,
+                                height: 25,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color:
-                                      const Color(0xFFF4F3F2).withOpacity(1.0),
+                                      const Color(0xFFF4F3F2).withOpacity(0.7),
                                 ),
-                                child: Center(
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 6,
+                                child: (snack2_Cal_intake / snack2_target) >= 1
+                                    ? Center(
+                                        child: SvgPicture.asset(
+                                          "assets/icons/Right.svg",
+                                          height: 10,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: SizedBox(
+                                          width: 21,
+                                          height: 21,
+                                          child: CircularProgressIndicator(
+                                            value: snack2_Cal_intake /
+                                                snack2_target,
+                                            strokeWidth: 2,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(Color(0xFFEFC8B1)),
+                                            semanticsValue: '40%',
+                                          ),
+                                        ),
+                                      )),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Snack 2",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "${snack2_Cal_intake.toStringAsFixed(0)} / ${snack2_target.toStringAsFixed(0)} Cal",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(0.6),
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 25,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 190,
+                                  child: VerticalDivider(
+                                    width: 150,
+                                    color: Color(0xFFEFC8B1),
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              children: [
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 318,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFC8B1).withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "Add other Food",
+                                      style: TextStyle(
+                                        fontFamily: "source sans pro",
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.none,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 15),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 323,
-                                child: ClipOval(
-                                  child: Divider(
-                                    color: Colors.black.withOpacity(0.5),
-                                    thickness: 0.4,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 15),
                   Container(
                     width: 353,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(15.0),
-                      border: Border.all(
-                        color: Colors.black.withOpacity(0.5),
-                        width: 0.4,
-                      ),
                     ),
-                    child: IntrinsicHeight(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 15),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const SizedBox(width: 15),
-                              const Text(
-                                "Dinner",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "0 / 1000 Kcal",
-                                style: TextStyle(
-                                  fontFamily: "source sans pro",
-                                  fontSize: 12,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.normal,
-                                  decoration: TextDecoration.none,
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Container(
-                                width: 16,
-                                height: 16,
+                    child: Column(
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                                width: 25,
+                                height: 25,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color:
-                                      const Color(0xFFF4F3F2).withOpacity(1.0),
+                                      const Color(0xFFF4F3F2).withOpacity(0.7),
                                 ),
-                                child: Center(
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: const Icon(
-                                      Icons.add,
-                                      size: 6,
+                                child: (dinner_Cal_intake / dinner_target) >= 1
+                                    ? Center(
+                                        child: SvgPicture.asset(
+                                          "assets/icons/Right.svg",
+                                          height: 10,
+                                        ),
+                                      )
+                                    : Center(
+                                        child: SizedBox(
+                                          width: 21,
+                                          height: 21,
+                                          child: CircularProgressIndicator(
+                                            value: dinner_Cal_intake /
+                                                dinner_target,
+                                            strokeWidth: 2,
+                                            valueColor:
+                                                const AlwaysStoppedAnimation<
+                                                    Color>(Color(0xFFEFC8B1)),
+                                            semanticsValue: '40%',
+                                          ),
+                                        ),
+                                      )),
+                            const SizedBox(width: 10),
+                            const Text(
+                              "Dinner",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                            const Spacer(),
+                            Text(
+                              "${dinner_Cal_intake.toStringAsFixed(0)} / ${dinner_target.toStringAsFixed(0)} Cal",
+                              style: TextStyle(
+                                fontFamily: "source sans pro",
+                                fontSize: 12,
+                                color: Colors.black.withOpacity(0.6),
+                                fontWeight: FontWeight.normal,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 25,
+                              child: Center(
+                                child: SizedBox(
+                                  height: 190,
+                                  child: VerticalDivider(
+                                    width: 150,
+                                    color: Color(0xFFEFC8B1),
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              children: [
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                ShoppingItemWidget(
+                                  itemName: "Banana",
+                                  itemWeight: "2 Kg",
+                                  onDelete: () {},
+                                ),
+                                const SizedBox(height: 10),
+                                Container(
+                                  width: 318,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFEFC8B1).withOpacity(0.2),
+                                    borderRadius: BorderRadius.circular(13.0),
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      "Add other Food",
+                                      style: TextStyle(
+                                        fontFamily: "source sans pro",
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.normal,
+                                        decoration: TextDecoration.none,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 15),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 323,
-                                child: ClipOval(
-                                  child: Divider(
-                                    color: Colors.black.withOpacity(0.5),
-                                    thickness: 0.4,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ShoppingItemWidget(
-                            itemName: "Banana",
-                            itemWeight: "2 Kg",
-                            onDelete: () {},
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  // const SizedBox(height: 30),
+                  // Container(
+                  //   width: 353,
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.transparent,
+                  //     borderRadius: BorderRadius.circular(15.0),
+                  //     border: Border.all(
+                  //       color: Colors.black.withOpacity(0.5),
+                  //       width: 0.4,
+                  //     ),
+                  //   ),
+                  //   child: IntrinsicHeight(
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         const SizedBox(height: 15),
+                  //         Row(
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             const SizedBox(width: 15),
+                  //             const Text(
+                  //               "Snack 1",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 16,
+                  //                 color: Colors.black,
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const Spacer(),
+                  //             Text(
+                  //               "0 / 1000 Kcal",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 12,
+                  //                 color: Colors.black.withOpacity(0.6),
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //             Container(
+                  //               width: 16,
+                  //               height: 16,
+                  //               decoration: BoxDecoration(
+                  //                 shape: BoxShape.circle,
+                  //                 color:
+                  //                     const Color(0xFFF4F3F2).withOpacity(1.0),
+                  //               ),
+                  //               child: Center(
+                  //                 child: GestureDetector(
+                  //                   onTap: () {},
+                  //                   child: const Icon(
+                  //                     Icons.add,
+                  //                     size: 6,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //           ],
+                  //         ),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           children: [
+                  //             SizedBox(
+                  //               width: 323,
+                  //               child: ClipOval(
+                  //                 child: Divider(
+                  //                   color: Colors.black.withOpacity(0.5),
+                  //                   thickness: 0.4,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 5,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(height: 10),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 30),
+                  // Container(
+                  //   width: 353,
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.transparent,
+                  //     borderRadius: BorderRadius.circular(15.0),
+                  //     border: Border.all(
+                  //       color: Colors.black.withOpacity(0.5),
+                  //       width: 0.4,
+                  //     ),
+                  //   ),
+                  //   child: IntrinsicHeight(
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         const SizedBox(height: 15),
+                  //         Row(
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             const SizedBox(width: 15),
+                  //             const Text(
+                  //               "Lunch",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 16,
+                  //                 color: Colors.black,
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const Spacer(),
+                  //             Text(
+                  //               "0 / 1000 Kcal",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 12,
+                  //                 color: Colors.black.withOpacity(0.6),
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //             Container(
+                  //               width: 16,
+                  //               height: 16,
+                  //               decoration: BoxDecoration(
+                  //                 shape: BoxShape.circle,
+                  //                 color:
+                  //                     const Color(0xFFF4F3F2).withOpacity(1.0),
+                  //               ),
+                  //               child: Center(
+                  //                 child: GestureDetector(
+                  //                   onTap: () {},
+                  //                   child: const Icon(
+                  //                     Icons.add,
+                  //                     size: 6,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //           ],
+                  //         ),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           children: [
+                  //             SizedBox(
+                  //               width: 323,
+                  //               child: ClipOval(
+                  //                 child: Divider(
+                  //                   color: Colors.black.withOpacity(0.5),
+                  //                   thickness: 0.4,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 5,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(height: 10),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 30),
+                  // Container(
+                  //   width: 353,
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.transparent,
+                  //     borderRadius: BorderRadius.circular(15.0),
+                  //     border: Border.all(
+                  //       color: Colors.black.withOpacity(0.5),
+                  //       width: 0.4,
+                  //     ),
+                  //   ),
+                  //   child: IntrinsicHeight(
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         const SizedBox(height: 15),
+                  //         Row(
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             const SizedBox(width: 15),
+                  //             const Text(
+                  //               "Snack 2",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 16,
+                  //                 color: Colors.black,
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const Spacer(),
+                  //             Text(
+                  //               "0 / 1000 Kcal",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 12,
+                  //                 color: Colors.black.withOpacity(0.6),
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //             Container(
+                  //               width: 16,
+                  //               height: 16,
+                  //               decoration: BoxDecoration(
+                  //                 shape: BoxShape.circle,
+                  //                 color:
+                  //                     const Color(0xFFF4F3F2).withOpacity(1.0),
+                  //               ),
+                  //               child: Center(
+                  //                 child: GestureDetector(
+                  //                   onTap: () {},
+                  //                   child: const Icon(
+                  //                     Icons.add,
+                  //                     size: 6,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //           ],
+                  //         ),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           children: [
+                  //             SizedBox(
+                  //               width: 323,
+                  //               child: ClipOval(
+                  //                 child: Divider(
+                  //                   color: Colors.black.withOpacity(0.5),
+                  //                   thickness: 0.4,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 5,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(height: 10),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 30),
+                  // Container(
+                  //   width: 353,
+                  //   decoration: BoxDecoration(
+                  //     color: Colors.transparent,
+                  //     borderRadius: BorderRadius.circular(15.0),
+                  //     border: Border.all(
+                  //       color: Colors.black.withOpacity(0.5),
+                  //       width: 0.4,
+                  //     ),
+                  //   ),
+                  //   child: IntrinsicHeight(
+                  //     child: Column(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         const SizedBox(height: 15),
+                  //         Row(
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           children: [
+                  //             const SizedBox(width: 15),
+                  //             const Text(
+                  //               "Dinner",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 16,
+                  //                 color: Colors.black,
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const Spacer(),
+                  //             Text(
+                  //               "0 / 1000 Kcal",
+                  //               style: TextStyle(
+                  //                 fontFamily: "source sans pro",
+                  //                 fontSize: 12,
+                  //                 color: Colors.black.withOpacity(0.6),
+                  //                 fontWeight: FontWeight.normal,
+                  //                 decoration: TextDecoration.none,
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //             Container(
+                  //               width: 16,
+                  //               height: 16,
+                  //               decoration: BoxDecoration(
+                  //                 shape: BoxShape.circle,
+                  //                 color:
+                  //                     const Color(0xFFF4F3F2).withOpacity(1.0),
+                  //               ),
+                  //               child: Center(
+                  //                 child: GestureDetector(
+                  //                   onTap: () {},
+                  //                   child: const Icon(
+                  //                     Icons.add,
+                  //                     size: 6,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //             const SizedBox(width: 15),
+                  //           ],
+                  //         ),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.center,
+                  //           mainAxisAlignment: MainAxisAlignment.start,
+                  //           children: [
+                  //             SizedBox(
+                  //               width: 323,
+                  //               child: ClipOval(
+                  //                 child: Divider(
+                  //                   color: Colors.black.withOpacity(0.5),
+                  //                   thickness: 0.4,
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 5,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(
+                  //           height: 10,
+                  //         ),
+                  //         ShoppingItemWidget(
+                  //           itemName: "Banana",
+                  //           itemWeight: "2 Kg",
+                  //           onDelete: () {},
+                  //         ),
+                  //         const SizedBox(height: 10),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -1268,25 +1828,21 @@ class ShoppingItemWidget extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      width: 323,
+      width: 318,
       height: 40,
       decoration: BoxDecoration(
-        color: Colors.transparent,
+        color: const Color(0xFFF4F3F2).withOpacity(0.7),
         borderRadius: BorderRadius.circular(13.0),
-        border: Border.all(
-          color: Colors.black.withOpacity(0.5),
-          width: 0.4,
-        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          const SizedBox(width: 15),
+          const SizedBox(width: 10),
           Container(
             width: 25,
             height: 25,
             decoration: BoxDecoration(
-              color: const Color(0xFFF4F2F2),
+              color: const Color(0xFFFFFFFF),
               borderRadius: BorderRadius.circular(7),
             ),
             child: Center(
@@ -1297,7 +1853,7 @@ class ShoppingItemWidget extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 15),
+          const SizedBox(width: 10),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -1326,27 +1882,97 @@ class ShoppingItemWidget extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Container(
-            width: 16,
-            height: 16,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xFFF4F3F2).withOpacity(1.0),
-            ),
-            child: Center(
-              child: GestureDetector(
-                onTap: onDelete,
-                child: const Icon(
-                  Icons.add,
-                  size: 6,
-                ),
-              ),
+          GestureDetector(
+            onTap: onDelete,
+            child: const Icon(
+              Icons.add,
+              size: 15,
             ),
           ),
-          const SizedBox(width: 15),
+          const SizedBox(width: 10),
         ],
       ),
     );
+    // Container(
+    //   width: 323,
+    //   height: 40,
+    //   decoration: BoxDecoration(
+    //     color: Colors.transparent,
+    //     borderRadius: BorderRadius.circular(13.0),
+    //     border: Border.all(
+    //       color: Colors.black.withOpacity(0.5),
+    //       width: 0.4,
+    //     ),
+    //   ),
+    //   child: Row(
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: [
+    //       const SizedBox(width: 15),
+    //       Container(
+    //         width: 25,
+    //         height: 25,
+    //         decoration: BoxDecoration(
+    //           color: const Color(0xFFF4F2F2),
+    //           borderRadius: BorderRadius.circular(7),
+    //         ),
+    //         child: Center(
+    //           child: Image.asset(
+    //             'assets/images/banana.png',
+    //             width: (16.15 / 393) * screenWidth,
+    //             height: (10 / 852) * screenHeight,
+    //           ),
+    //         ),
+    //       ),
+    //       const SizedBox(width: 15),
+    //       Column(
+    //         mainAxisAlignment: MainAxisAlignment.center,
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         children: [
+    //           Text(
+    //             itemName,
+    //             style: TextStyle(
+    //               fontFamily: "source sans pro",
+    //               fontSize: 10,
+    //               color: Colors.black.withOpacity(1.0),
+    //               fontWeight: FontWeight.normal,
+    //               decoration: TextDecoration.none,
+    //             ),
+    //             overflow: TextOverflow.ellipsis,
+    //           ),
+    //           Text(
+    //             itemWeight,
+    //             style: TextStyle(
+    //               fontFamily: "source sans pro",
+    //               fontSize: 10,
+    //               color: Colors.black.withOpacity(0.6),
+    //               fontWeight: FontWeight.normal,
+    //               decoration: TextDecoration.none,
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //       const Spacer(),
+    //       Container(
+    //         width: 16,
+    //         height: 16,
+    //         decoration: BoxDecoration(
+    //           shape: BoxShape.circle,
+    //           color: const Color(0xFFF4F3F2).withOpacity(1.0),
+    //         ),
+    //         child: Center(
+    //           child: GestureDetector(
+    //             onTap: onDelete,
+    //             child: const Icon(
+    //               Icons.add,
+    //               size: 6,
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       const SizedBox(width: 15),
+    //     ],
+    //   ),
+    // );
   }
 }
 
