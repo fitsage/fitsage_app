@@ -4,14 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Planner extends StatefulWidget {
-  const Planner({Key? key}) : super(key: key);
+class FitMeal extends StatefulWidget {
+  const FitMeal({Key? key}) : super(key: key);
 
   @override
-  _PlannerState createState() => _PlannerState();
+  _FitMealState createState() => _FitMealState();
 }
 
-class _PlannerState extends State<Planner> with TickerProviderStateMixin {
+class _FitMealState extends State<FitMeal> with TickerProviderStateMixin {
   late DateTime selectedDate;
 
   @override
@@ -2488,8 +2488,8 @@ class _AlertFullScreenDialogState extends State<AlertFullScreenDialog> {
                             ),
                             const Spacer(),
                             Transform.scale(
-                              scale:
-                                  0.7, // Adjust the scale factor as needed to decrease the size
+                              scale: 0.7,
+                              // Adjust the scale factor as needed to decrease the size
                               child: CupertinoSwitch(
                                 value: isSwitched,
                                 onChanged: (value) {
