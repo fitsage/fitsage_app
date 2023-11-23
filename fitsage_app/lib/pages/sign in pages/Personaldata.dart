@@ -23,35 +23,21 @@ class _PersonalDataState extends State<PersonalData> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width/393;
+    double screenHeight = MediaQuery.of(context).size.height/852;
 
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: Material(
+    return Material(
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: EdgeInsets.fromLTRB(0, (70 / 852) * screenHeight, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 70 * screenHeight, 0, 0),
             child: Column(
               children: [
                 Row(
                   children: [
                     Padding(
                       padding: EdgeInsets.fromLTRB(
-                        (30 / 393) * screenWidth,
+                        30  * screenWidth,
                         0,
                         0,
                         0,
@@ -63,7 +49,7 @@ class _PersonalDataState extends State<PersonalData> {
                       padding: EdgeInsets.fromLTRB(
                         0,
                         0,
-                        screenWidth * (30 / 393),
+                        screenWidth * 30,
                         0,
                       ),
                       child: GestureDetector(
@@ -91,18 +77,17 @@ class _PersonalDataState extends State<PersonalData> {
                   ],
                 ),
                 SizedBox(
-                  height: (60 / 852) * screenHeight,
+                  height: 60 * screenHeight,
                 ),
-                Column(
-                  children: [
-                    RichText(
+                RichText(
                       text: TextSpan(
                         children: [
                           TextSpan(
                             text: "Hey",
                             style: TextStyle(
                               fontFamily: "source sans pro",
-                              fontSize: 24 * (screenHeight / 852),
+                              color: Colors.black.withOpacity(0.6),
+                              fontSize: 24 * screenHeight,
                               fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
                             ),
@@ -111,7 +96,7 @@ class _PersonalDataState extends State<PersonalData> {
                             text: " ",
                             style: TextStyle(
                               fontFamily: "source sans pro",
-                              fontSize: 24 * (screenHeight / 852),
+                              fontSize: 24 * screenHeight ,
                               fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
                             ),
@@ -120,31 +105,27 @@ class _PersonalDataState extends State<PersonalData> {
                             text: "Name",
                             style: TextStyle(
                               fontFamily: "source sans pro",
-                              fontSize: 24 * (screenHeight / 852),
+                              fontSize: 24 * screenHeight ,
                               color: const Color(0xFFEFC8B1),
                               fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
                             ),
                           ),
                           TextSpan(
-                            text: " !",
+                            text: "!",
                             style: TextStyle(
                               fontFamily: "source sans pro",
-                              fontSize: 24 * (screenHeight / 852),
+                              fontSize: 24 * screenHeight,
                               fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
+                              color: Colors.black.withOpacity(0.6),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: (9 / 852) * screenHeight),
-                    Text(
+                SizedBox(height: 9 * screenHeight),
+                Text(
                       "Tell us more about you!",
                       style: TextStyle(
                         fontFamily: "source sans pro",
@@ -154,153 +135,147 @@ class _PersonalDataState extends State<PersonalData> {
                         decoration: TextDecoration.none,
                       ),
                     ),
-                  ],
-                ),
-                Column(
+                SizedBox(height: 79 * screenHeight),
+                //TODO: Refactor below children into a new component
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: (79 / 852) * screenHeight),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedGender = 'male';
-                            });
-                          },
-                          child: Container(
-                            width: (100 / 393) * screenWidth,
-                            height: (58 / 852) * screenHeight,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEFC8B1).withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(
-                                color: selectedGender == 'male'
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.transparent,
-                                width: 2,
-                              ),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/male.png",
-                                    width: screenWidth * (30 / 393),
-                                    height: screenHeight * (25.36 / 852),
-                                  ),
-                                  SizedBox(width: (4 / 393) * screenWidth),
-                                  Text(
-                                    'Male',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: "source sans pro",
-                                      color: const Color(0xFF514644)
-                                          .withOpacity(1),
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.normal,
-                                      decoration: TextDecoration.none,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedGender = 'male';
+                        });
+                      },
+                      child: Container(
+                        width: 100 * screenWidth,
+                        height: 58 * screenHeight,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEFC8B1).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                            color: selectedGender == 'male'
+                                ? Colors.black.withOpacity(0.3)
+                                : Colors.transparent,
+                            width: 2,
                           ),
                         ),
-                        SizedBox(width: (16.5 / 393) * screenWidth),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedGender = 'female';
-                            });
-                          },
-                          child: Container(
-                            width: (100 / 393) * screenWidth,
-                            height: (58 / 852) * screenHeight,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEFC8B1).withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(
-                                color: selectedGender == 'female'
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.transparent,
-                                width: 2,
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/images/male.png",
+                                width: screenWidth * 30 ,
+                                height: screenHeight * 25.36,
                               ),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    "assets/images/female.png",
-                                    width: screenWidth * (30 / 393),
-                                    height: screenHeight * (25.36 / 852),
-                                  ),
-                                  SizedBox(width: (4 / 393) * screenWidth),
-                                  Text(
-                                    'Female',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontFamily: "source sans pro",
-                                      color: const Color(0xFF514644)
-                                          .withOpacity(1),
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.normal,
-                                      decoration: TextDecoration.none,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: (16.5 / 393) * screenWidth),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedGender = 'other';
-                            });
-                          },
-                          child: Container(
-                            width: (100 / 393) * screenWidth,
-                            height: (58 / 852) * screenHeight,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFEFC8B1).withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(15.0),
-                              border: Border.all(
-                                color: selectedGender == 'other'
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.transparent,
-                                width: 2,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Others',
+                              SizedBox(width: 4  * screenWidth),
+                              Text(
+                                'Male',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontFamily: "source sans pro",
-                                  color: const Color(0xFF514644).withOpacity(1),
+                                  color: const Color(0xFF514644)
+                                      .withOpacity(1),
                                   fontSize: 13,
                                   fontWeight: FontWeight.normal,
                                   decoration: TextDecoration.none,
                                 ),
                               ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 16.5 * screenWidth),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedGender = 'female';
+                        });
+                      },
+                      child: Container(
+                        width: 100  * screenWidth,
+                        height: 58 * screenHeight,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEFC8B1).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                            color: selectedGender == 'female'
+                                ? Colors.black.withOpacity(0.3)
+                                : Colors.transparent,
+                            width: 2,
+                          ),
+                        ),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/images/female.png",
+                                width: screenWidth * 30,
+                                height: screenHeight * 25.36 ,
+                              ),
+                              SizedBox(width: (4 / 393) * screenWidth),
+                              Text(
+                                'Female',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: "source sans pro",
+                                  color: const Color(0xFF514644)
+                                      .withOpacity(1),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: 16.5  * screenWidth),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedGender = 'other';
+                        });
+                      },
+                      child: Container(
+                        width: 100  * screenWidth,
+                        height: 58 * screenHeight,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEFC8B1).withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(15.0),
+                          border: Border.all(
+                            color: selectedGender == 'other'
+                                ? Colors.black.withOpacity(0.3)
+                                : Colors.transparent,
+                            width: 2,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Others',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: "source sans pro",
+                              color: const Color(0xFF514644).withOpacity(1),
+                              fontSize: 13,
+                              fontWeight: FontWeight.normal,
+                              decoration: TextDecoration.none,
                             ),
                           ),
                         ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(height: (18 / 852) * screenHeight),
+                SizedBox(height: 18 * screenHeight),
                 Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: (30 / 393) * screenWidth),
+                      horizontal: 30 * screenWidth),
                   child: Column(
                     children: [
                       TextFormField(
@@ -323,7 +298,7 @@ class _PersonalDataState extends State<PersonalData> {
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                         ),
                       ),
-                      SizedBox(height: (18 / 852) * screenHeight),
+                      SizedBox(height: 18 * screenHeight),
                       TextFormField(
                         cursorColor: const Color(0xFF514644),
                         decoration: const InputDecoration(
@@ -348,13 +323,13 @@ class _PersonalDataState extends State<PersonalData> {
                   ),
                 ),
                 SizedBox(
-                  height: screenHeight * (50 / 852),
+                  height: screenHeight * 50,
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: Padding(
                     padding:
-                        EdgeInsets.fromLTRB(0, 0, screenWidth * (30 / 393), 0),
+                        EdgeInsets.fromLTRB(0, 0, screenWidth * 30, 0),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -374,8 +349,8 @@ class _PersonalDataState extends State<PersonalData> {
                         ),
                       ),
                       child: SizedBox(
-                        width: (60 / 393) * screenWidth,
-                        height: (40 / 852) * screenHeight,
+                        width: 60  * screenWidth,
+                        height: 40 * screenHeight,
                         child: const Align(
                           alignment: Alignment
                               .center, // Horizontally centering only the text
@@ -386,6 +361,7 @@ class _PersonalDataState extends State<PersonalData> {
                               fontSize: 18,
                               fontWeight: FontWeight.normal,
                               decoration: TextDecoration.none,
+                              color: Colors.white,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -398,7 +374,6 @@ class _PersonalDataState extends State<PersonalData> {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

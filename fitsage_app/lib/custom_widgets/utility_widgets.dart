@@ -5,16 +5,18 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width/393;
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        LogoPic(width: (34 / 393) * screenWidth),
-        SizedBox(width: screenWidth * (20 / 393)),
-        const HeaderText(),
-      ],
+    return Padding(
+      padding: EdgeInsets.fromLTRB(30  * screenWidth, 0, 0, 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          LogoPic(width: 34  * screenWidth),
+          SizedBox(width: screenWidth * 20),
+          const HeaderText(),
+        ],
+      ),
     );
   }
 }
