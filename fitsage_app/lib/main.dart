@@ -1,6 +1,4 @@
 import 'package:fitsage_app/pages/Home.dart';
-// import 'package:fitsage_app/pages/confetti.dart';
-// import 'package:fitsage_app/views/welcome.dart';
 import 'package:flutter/material.dart';
 
 void main() {

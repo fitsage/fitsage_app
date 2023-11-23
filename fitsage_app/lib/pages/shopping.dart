@@ -377,10 +377,10 @@ class _ShoppingState extends State<Shopping> with TickerProviderStateMixin {
                         ),
                         Expanded(
                           child: ListView(
-                            scrollDirection: Axis.vertical,
+                            padding: const EdgeInsets.all(0),
                             children: [
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
                               const Text(
                                 "Vegetable & fruits",
@@ -564,10 +564,10 @@ class _ShoppingState extends State<Shopping> with TickerProviderStateMixin {
                         ),
                         Expanded(
                           child: ListView(
-                            scrollDirection: Axis.vertical,
+                            padding: const EdgeInsets.all(0),
                             children: [
                               const SizedBox(
-                                height: 40,
+                                height: 30,
                               ),
                               const Text(
                                 "Breakfast",

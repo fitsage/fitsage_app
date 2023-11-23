@@ -687,11 +687,11 @@ class _FitMealState extends State<FitMeal> with TickerProviderStateMixin {
             child: SizedBox(
               width: 353,
               child: ListView(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 children: [
                   Container(
                     width: 353,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
                     child: Column(

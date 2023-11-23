@@ -1,3 +1,4 @@
+import 'package:fitsage_app/pages/Add_food_page/meal_selection.dart';
 import 'package:fitsage_app/pages/Breakdown.dart';
 import 'package:fitsage_app/pages/MealList.dart';
 import 'package:fitsage_app/pages/Personal_details.dart';
@@ -843,7 +844,15 @@ class _MainPageState extends State<MainPage> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           InkWell(
-                                            onTap: () {},
+                                            onTap: () {
+                                              showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return const MealSelectiondialog();
+                                                },
+                                              );
+                                            },
                                             child: Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,

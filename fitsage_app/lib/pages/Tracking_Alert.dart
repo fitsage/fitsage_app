@@ -1,8 +1,3 @@
-import 'package:fitsage_app/custom_widgets/Custom_Navbar.dart';
-import 'package:fitsage_app/pages/Main_page.dart';
-import 'package:fitsage_app/pages/Tracking.dart';
-import 'package:fitsage_app/pages/planner.dart';
-import 'package:fitsage_app/pages/shopping.dart';
 import 'package:flutter/material.dart';
 
 class TrackingAddDialog extends StatefulWidget {

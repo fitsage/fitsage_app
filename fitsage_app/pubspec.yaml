@@ -79,6 +79,13 @@ flutter:
     - assets/icons/Setting.svg
     - assets/icons/clock.svg
     - assets/icons/Right.svg
+    - assets/icons/Search.svg
+    - assets/icons/Arrow.svg
+    - assets/icons/scanmeal.svg
+    - assets/icons/Scan.svg
+    - assets/icons/cross.svg
+    - assets/icons/add.svg
+    - assets/icons/report.svg
     - assets/images/back.png
     - assets/images/welcome.png
     - assets/images/female.png
